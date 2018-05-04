@@ -1,4 +1,10 @@
+using Caliburn.Micro;
+using SimpleDnsCrypt.Config;
+using SimpleDnsCrypt.Extensions;
+using SimpleDnsCrypt.Helper;
+using SimpleDnsCrypt.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,11 +17,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using Caliburn.Micro;
-using SimpleDnsCrypt.Config;
-using SimpleDnsCrypt.Extensions;
-using SimpleDnsCrypt.Helper;
-using SimpleDnsCrypt.Models;
+using TabControl = System.Windows.Controls.TabControl;
 
 namespace SimpleDnsCrypt.ViewModels
 {
@@ -32,7 +34,7 @@ namespace SimpleDnsCrypt.ViewModels
 	}
 
 	[Export(typeof(MainViewModel))]
-	public class MainViewModel : PropertyChangedBase
+	public class MainViewModel : Screen, INotifyDataErrorInfo
 	{
 		private static readonly ILog Log = LogManagerHelper.Factory();
 		private readonly IEventAggregator _events;
@@ -356,7 +358,10 @@ namespace SimpleDnsCrypt.ViewModels
 				_isDnsCryptAutomaticModeEnabled = false;
 			}
 
-			if (!string.IsNullOrEmpty(DnscryptProxyConfiguration?.query_log?.file)) QueryLogViewModel.IsQueryLogLogging = true;
+			if (!string.IsNullOrEmpty(DnscryptProxyConfiguration?.query_log?.file))
+			{
+				QueryLogViewModel.IsQueryLogLogging = true;
+			}
 
 			if (!string.IsNullOrEmpty(DnscryptProxyConfiguration?.blacklist?.log_file))
 			{
@@ -382,6 +387,11 @@ namespace SimpleDnsCrypt.ViewModels
 				{
 					_isOperatingAsGlobalResolver = true;
 				}
+			}
+
+			if (DnscryptProxyConfiguration?.fallback_resolver != null)
+			{
+				FallbackResolver = DnscryptProxyConfiguration.fallback_resolver;
 			}
 		}
 
@@ -509,6 +519,32 @@ namespace SimpleDnsCrypt.ViewModels
 			{
 				if (DnscryptProxyConfiguration == null) return;
 				DnscryptProxyConfigurationManager.DnscryptProxyConfiguration = _dnscryptProxyConfiguration;
+
+				if (DnscryptProxyConfiguration?.server_names?.Count > 0)
+				{
+					LoadResolvers();
+					IsDnsCryptAutomaticModeEnabled = false;
+					//check if all selected servers still match the selected filters
+					var selectedServerNames = DnscryptProxyConfiguration.server_names;
+					foreach (var serverName in selectedServerNames.ToList())
+					{
+						var s = _resolvers.FirstOrDefault(r => r.Name.Equals(serverName));
+						if (s == null)
+						{
+							selectedServerNames.Remove(serverName);
+						}
+						else
+						{
+							s.IsInServerList = true;
+						}
+					}
+					DnscryptProxyConfiguration.server_names = selectedServerNames;
+					if (DnscryptProxyConfiguration?.server_names?.Count == 0)
+					{
+						IsDnsCryptAutomaticModeEnabled = true;
+					}
+				}
+
 				if (DnscryptProxyConfigurationManager.SaveConfiguration())
 				{
 					_dnscryptProxyConfiguration = DnscryptProxyConfigurationManager.DnscryptProxyConfiguration;
@@ -673,7 +709,10 @@ namespace SimpleDnsCrypt.ViewModels
 
 		public void SaveAdvancedSettings()
 		{
-			SaveDnsCryptConfiguration();
+			if (!HasErrors)
+			{
+				SaveDnsCryptConfiguration();
+			}
 		}
 
 		#endregion
@@ -832,6 +871,55 @@ namespace SimpleDnsCrypt.ViewModels
 				NotifyOfPropertyChange(() => IsUninstallingService);
 			}
 		}
+
+		#endregion
+
+		private string _fallbackResolver;
+		public string FallbackResolver
+		{
+			get => _fallbackResolver;
+			set
+			{
+				_fallbackResolver = value;
+				ValidateFallbackResolver();
+				NotifyOfPropertyChange(() => FallbackResolver);
+			}
+		}
+
+		private readonly Dictionary<string, string> _validationErrors = new Dictionary<string, string>();
+
+		public IEnumerable GetErrors(string propertyName)
+		{
+			return _validationErrors.TryGetValue(propertyName, out var value) ? new List<string>(1) { value } : null;
+		}
+
+		public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+
+		public bool HasErrors => _validationErrors.Any();
+
+		
+		private void ValidateFallbackResolver()
+		{
+			if (string.IsNullOrEmpty(_fallbackResolver))
+			{
+				_validationErrors.Add("FallbackResolver", "invalid");
+			}
+			else
+			{
+				var validatedFallbackResolver = ValidationHelper.ValidateIpEndpoint(_fallbackResolver);
+				if (!string.IsNullOrEmpty(validatedFallbackResolver))
+				{
+					_fallbackResolver = validatedFallbackResolver;
+					_validationErrors.Remove("FallbackResolver");
+				}
+				else
+				{
+					_validationErrors.Add("FallbackResolver", "invalid");
+				}
+			}
+		}
+
+		#region Tray
 
 		#endregion
 	}
