@@ -133,16 +133,16 @@
     <value>환경설정</value>
   </data>
   <data name="default_settings_configuration_ipv4" xml:space="preserve">
-    <value>IPv4 서버 사용중</value>
+    <value>IPv4 서버 사용</value>
   </data>
   <data name="default_settings_configuration_ipv4_tooltip" xml:space="preserve">
-    <value>IPv4 통신이 가능한 서버만 사용합니다.</value>
+    <value>IPv4 통신이 가능한 서버를 사용합니다.</value>
   </data>
   <data name="default_settings_configuration_ipv6" xml:space="preserve">
-    <value>IPv6 서버 사용중</value>
+    <value>IPv6 서버 사용</value>
   </data>
   <data name="default_settings_configuration_ipv6_tooltip" xml:space="preserve">
-    <value>IPv6 통신이 가능한 서버만 사용합니다. (IPv6을 사용하지 않는다면 꺼주세요.)</value>
+    <value>IPv6 통신이 가능한 서버를 사용합니다. (IPv6을 사용하지 않는다면 꺼주세요.)</value>
   </data>
   <data name="default_settings_configuration_dnssec" xml:space="preserve">
     <value>DNSSEC 지원 서버만 사용</value>
@@ -288,19 +288,19 @@
     <value>설정</value>
   </data>
   <data name="settings_domain_blacklist" xml:space="preserve">
-    <value>&quot;도메인 차단 목록&quot; 탭 표시</value>
+    <value>도메인 차단 목록 탭 표시</value>
   </data>
   <data name="settings_address_blacklist" xml:space="preserve">
-    <value>&quot;주소 차단 목록&quot; 탭 표시</value>
+    <value>주소 차단 목록 탭 표시</value>
   </data>
   <data name="settings_domain_block" xml:space="preserve">
-    <value>&quot;도메인 차단 기록&quot; 탭 표시</value>
+    <value>도메인 차단 기록 탭 표시</value>
   </data>
   <data name="settings_address_block" xml:space="preserve">
-    <value>&quot;주소 차단 기록&quot; 탭 표시</value>
+    <value>주소 차단 기록 탭 표시</value>
   </data>
   <data name="settings_query_log" xml:space="preserve">
-    <value>&quot;쿼리 기록&quot; 탭 표시</value>
+    <value>쿼리 기록 탭 표시</value>
   </data>
   <data name="tabitem_resolvers" xml:space="preserve">
     <value>서버</value>
@@ -309,7 +309,7 @@
     <value>고급 설정</value>
   </data>
   <data name="settings_advanced_settings" xml:space="preserve">
-    <value>&quot;고급 설정&quot; 탭 표시</value>
+    <value>고급 설정 탭 표시</value>
   </data>
   <data name="yes" xml:space="preserve">
     <value>예</value>
@@ -506,11 +506,37 @@
   </data>
   <data name="advanced_settings_fallback_resolver_content" xml:space="preserve">
     <value>정상적이고 암호화되지 않은 DNS 서버입니다. 설정해둔 DNS가 작동하지 않을 때, 혹은 서버 목록을 받아올 때 사용됩니다. 중국에 거주할 경우, 114.114.114.114:54로 설정해야 할 수도 있습니다.</value>
+    <comment>Fuzzy</comment>
   </data>
   <data name="trayicon_tooltip" xml:space="preserve">
     <value>Simple DNSCrypt</value>
   </data>
   <data name="trayicon_exit" xml:space="preserve">
     <value>종료</value>
+  </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>수신 주소</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>수신 주소 관리</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>수신을 대기할 로컬 주소와 포트의 목록입니다. IPv4와 IPv6을 사용할 수 있습니다.</value>
+    <comment>대체할만한 단어가 생각나지 않아 일시적으로 &quot;수신 주소&quot;로 번역을 하였으나, 원문의 의미가 제대로 살지 않을 듯 합니다. 더 나은 번역이 있다면 수정해주시길 바랍니다.
+Fuzzy</comment>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>수신 주소 추가</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>선택한 수신 주소 제거</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>수신 주소를 기본으로 복구</value>
+    <comment>Fuzzy</comment>
   </data>
 </root>

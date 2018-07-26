@@ -513,4 +513,22 @@
   <data name="trayicon_exit" xml:space="preserve">
     <value>退出</value>
   </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>位址及連接埠監聽設定</value>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>管理監聽設定</value>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>本機位址及連接埠監聽清單設定，IPv4、IPv6均適用</value>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>新增監聽位址</value>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>移除所選的監聽位址</value>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>重設監聽位址</value>
+  </data>
 </root>

@@ -511,4 +511,22 @@
   <data name="trayicon_exit" xml:space="preserve">
     <value>Sair</value>
   </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>Endereços Escutados</value>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>Gerir Endereços Escutados</value>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>Lista de endereços locais e portas para escutar. Podem ser IPv4 e/ou IPv6.</value>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>Adicionar novo endereço para escuta</value>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>Remover endereço escutado selecionado</value>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>Restaurar endereços em escuta predefinidos</value>
+  </data>
 </root>

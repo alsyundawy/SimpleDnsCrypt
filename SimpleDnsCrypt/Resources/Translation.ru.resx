@@ -510,4 +510,22 @@
   <data name="trayicon_exit" xml:space="preserve">
     <value>Выход</value>
   </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>Прослушиваемые адреса</value>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>Управление адресами</value>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>Список локальных адресов и портов для прослушивания. Может быть IPv4 и/или IPv6.</value>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>Добавить новый адрес прослушивания</value>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>Удалить выбранный адрес прослушивания</value>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>Восстановить адреса прослушивания по умолчанию</value>
+  </data>
 </root>

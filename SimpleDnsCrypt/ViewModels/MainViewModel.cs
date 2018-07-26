@@ -62,6 +62,7 @@ namespace SimpleDnsCrypt.ViewModels
 		private int _selectedTabIndex;
 
 		private SettingsViewModel _settingsViewModel;
+		private ListenAddressesViewModel _listenAddressesViewModel;
 		private bool _showHiddenCards;
 		private string _windowTitle;
 
@@ -88,6 +89,7 @@ namespace SimpleDnsCrypt.ViewModels
 				WindowTitle = LocalizationEx.GetUiString("settings", Thread.CurrentThread.CurrentCulture)
 			};
 			_settingsViewModel.PropertyChanged += SettingsViewModelOnPropertyChanged;
+			_listenAddressesViewModel = new ListenAddressesViewModel(_windowManager, _events);
 			_queryLogViewModel = new QueryLogViewModel(_windowManager, _events);
 			_domainBlockLogViewModel = new DomainBlockLogViewModel(_windowManager, _events);
 			_domainBlacklistViewModel = new DomainBlacklistViewModel(_windowManager, _events);
@@ -193,6 +195,17 @@ namespace SimpleDnsCrypt.ViewModels
 				if (value.Equals(_settingsViewModel)) return;
 				_settingsViewModel = value;
 				NotifyOfPropertyChange(() => SettingsViewModel);
+			}
+		}
+
+		public ListenAddressesViewModel ListenAddressesViewModel
+		{
+			get => _listenAddressesViewModel;
+			set
+			{
+				if (value.Equals(_listenAddressesViewModel)) return;
+				_listenAddressesViewModel = value;
+				NotifyOfPropertyChange(() => ListenAddressesViewModel);
 			}
 		}
 
@@ -512,6 +525,40 @@ namespace SimpleDnsCrypt.ViewModels
 			if (!result) Properties.Settings.Default.Save();
 		}
 
+		public async void ListenAddresses()
+		{
+			dynamic settings = new ExpandoObject();
+			settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+			var oldAddressed = new List<string>(DnscryptProxyConfiguration.listen_addresses);
+			ListenAddressesViewModel.ListenAddresses = DnscryptProxyConfiguration.listen_addresses;
+			ListenAddressesViewModel.WindowTitle = LocalizationEx.GetUiString("address_settings_listen_addresses", Thread.CurrentThread.CurrentCulture);
+			var result = _windowManager.ShowDialog(ListenAddressesViewModel, null, settings);
+			if (!result)
+			{
+				if (ListenAddressesViewModel.ListenAddresses.Count == 0) return;
+
+				var a = ListenAddressesViewModel.ListenAddresses.Except(oldAddressed).ToList();
+				var b = oldAddressed.Except(ListenAddressesViewModel.ListenAddresses).ToList();
+				if (!a.Any() && !b.Any()) return;
+				DnscryptProxyConfiguration.listen_addresses = ListenAddressesViewModel.ListenAddresses;
+				SaveAdvancedSettings();
+
+				var localNetworkInterfaces = LocalNetworkInterfaceManager.GetLocalNetworkInterfaces(oldAddressed.ToList());
+				foreach (var localNetworkInterface in localNetworkInterfaces)
+				{
+					localNetworkInterface.IsChangeable = false;
+					if (!localNetworkInterface.UseDnsCrypt) continue;
+					var status = LocalNetworkInterfaceManager.SetNameservers(localNetworkInterface,
+						LocalNetworkInterfaceManager.ConvertToDnsList(
+							DnscryptProxyConfigurationManager.DnscryptProxyConfiguration.listen_addresses.ToList()));
+					localNetworkInterface.UseDnsCrypt = status;
+					localNetworkInterface.IsChangeable = true;
+				}
+				await Task.Delay(1000).ConfigureAwait(false);
+				ReloadLoadNetworkInterfaces();
+			}
+		}
+
 		public async void SaveDnsCryptConfiguration()
 		{
 			IsSavingConfiguration = true;
@@ -522,7 +569,6 @@ namespace SimpleDnsCrypt.ViewModels
 
 				if (DnscryptProxyConfiguration?.server_names?.Count > 0)
 				{
-					LoadResolvers();
 					IsDnsCryptAutomaticModeEnabled = false;
 					//check if all selected servers still match the selected filters
 					var selectedServerNames = DnscryptProxyConfiguration.server_names;
@@ -538,6 +584,7 @@ namespace SimpleDnsCrypt.ViewModels
 							s.IsInServerList = true;
 						}
 					}
+					
 					DnscryptProxyConfiguration.server_names = selectedServerNames;
 					if (DnscryptProxyConfiguration?.server_names?.Count == 0)
 					{
@@ -914,6 +961,7 @@ namespace SimpleDnsCrypt.ViewModels
 				if (!string.IsNullOrEmpty(validatedFallbackResolver))
 				{
 					_fallbackResolver = validatedFallbackResolver;
+					DnscryptProxyConfiguration.fallback_resolver = _fallbackResolver;
 					_validationErrors.Remove("FallbackResolver");
 				}
 				else

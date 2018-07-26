@@ -523,4 +523,22 @@
   <data name="trayicon_exit" xml:space="preserve">
     <value>Quitter</value>
   </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>Adresses d&apos;écoute</value>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>Gérer les adresses d&apos;écoutes</value>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>Liste des adresses locales et des ports à écouter. Peut être IPv4 et/ou IPv6</value>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>Ajouter une nouvelle address d&apos;écoute</value>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>supprimer l&apos;adresse d&apos;écoute sélectionnée</value>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>Restaurer les adresses d&apos;écoute par défaut</value>
+  </data>
 </root>

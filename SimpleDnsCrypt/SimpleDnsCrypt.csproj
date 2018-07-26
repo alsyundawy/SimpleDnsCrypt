@@ -92,7 +92,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.5.4\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="Sodium, Version=0.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\libsodium-net.0.10.0\lib\Net40\Sodium.dll</HintPath>
@@ -147,6 +147,7 @@
     <Compile Include="Controls\BaseMetroDialog.xaml.cs">
       <DependentUpon>BaseMetroDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\LoggingListView.cs" />
     <Compile Include="Converters\BoolToForegroundConverter.cs" />
     <Compile Include="Converters\BoolToTextConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
@@ -216,6 +217,7 @@
     </Page>
     <Compile Include="ViewModels\AddressBlacklistViewModel.cs" />
     <Compile Include="ViewModels\AddressBlockLogViewModel.cs" />
+    <Compile Include="ViewModels\ListenAddressesViewModel.cs" />
     <Compile Include="ViewModels\MetroMessageBoxViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
@@ -257,6 +259,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\CustomMetroListBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListenAddressesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -427,6 +433,10 @@
       <DependentUpon>Translation.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Translation.fa.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Translation.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Translation.sv.resx">
       <SubType>Designer</SubType>
       <DependentUpon>Translation.resx</DependentUpon>
     </EmbeddedResource>

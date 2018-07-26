@@ -510,4 +510,22 @@
   <data name="trayicon_exit" xml:space="preserve">
     <value>Zamknij</value>
   </data>
+  <data name="address_settings_listen_addresses" xml:space="preserve">
+    <value>Nasłuchiwany adres</value>
+  </data>
+  <data name="address_settings_manage_listen_addresses" xml:space="preserve">
+    <value>Zarządzaj adresami</value>
+  </data>
+  <data name="address_settings_description" xml:space="preserve">
+    <value>Lista adresów (zarówno IPv4 bądź IPv6) i portów nasłuchiwanych lokalnie.</value>
+  </data>
+  <data name="address_settings_add" xml:space="preserve">
+    <value>Dodaj adres do nasłuchu</value>
+  </data>
+  <data name="address_settings_remove" xml:space="preserve">
+    <value>Usuń wybrany adres</value>
+  </data>
+  <data name="address_settings_restore" xml:space="preserve">
+    <value>Przywróć domyślne adresy</value>
+  </data>
 </root>
