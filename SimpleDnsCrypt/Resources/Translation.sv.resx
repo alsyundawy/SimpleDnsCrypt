@@ -121,7 +121,7 @@
     <value>Nätverkskort</value>
   </data>
   <data name="default_settings_show_hidden_cards" xml:space="preserve">
-    <value>Visa dolda kort</value>
+    <value>Visa dolda nätverkskort</value>
   </data>
   <data name="default_settings_service_header" xml:space="preserve">
     <value>Tjänst</value>
@@ -172,7 +172,7 @@
     <value>Saknade administrativa rättigheter!</value>
   </data>
   <data name="loader_checking_version" xml:space="preserve">
-    <value>Kontrollera efter ny version. . .</value>
+    <value>Sök efter ny version. . .</value>
   </data>
   <data name="loader_new_version_found" xml:space="preserve">
     <value>En nyare version hittades: {0}</value>
@@ -301,7 +301,7 @@
     <value>Visa fliken &quot;Förfrågningslogg&quot;</value>
   </data>
   <data name="tabitem_resolvers" xml:space="preserve">
-    <value>upplösare</value>
+    <value>Upplösare</value>
   </data>
   <data name="tabitem_advanced_settings" xml:space="preserve">
     <value>Avancerade inställningar</value>
@@ -313,7 +313,7 @@
     <value>ja</value>
   </data>
   <data name="no" xml:space="preserve">
-    <value>Nej</value>
+    <value>nej</value>
   </data>
   <data name="cancel" xml:space="preserve">
     <value>avbryt</value>
@@ -418,7 +418,7 @@
     <value>Tvinga TCP</value>
   </data>
   <data name="advanced_settings_forcetcp_content" xml:space="preserve">
-    <value>Använd alltid TCP för att ansluta till uppströms servrar</value>
+    <value>Använd alltid TCP för att ansluta till uppströmsservrar</value>
   </data>
   <data name="add" xml:space="preserve">
     <value>Lägg till</value>
@@ -445,7 +445,7 @@
     <value>Skapa dnscrypt-proxy-svartlistan</value>
   </data>
   <data name="button_blacklist_import" xml:space="preserve">
-    <value>Importera befintliga svarta listregler</value>
+    <value>Importera befintliga svartlisteregler</value>
   </data>
   <data name="button_blacklist_export" xml:space="preserve">
     <value>Exportera svartlisteregler</value>
@@ -499,7 +499,7 @@
     <value>Om du vill att den här datorn ska fungera som gateway-enhet för andra (t.ex. smartphones eller andra datorer)</value>
   </data>
   <data name="advanced_settings_fallback_resolver" xml:space="preserve">
-    <value>Fallback upplösare</value>
+    <value>Reservupplösare</value>
   </data>
   <data name="advanced_settings_fallback_resolver_content" xml:space="preserve">
     <value>Det här är en vanlig, icke-krypterad DNS-resolver, som endast kommer att användas för enkelsökfrågor när du hämtar den ursprungliga upplösningslistan, och endast om systemets DNS-konfiguration inte fungerar. Människor i Kina kan behöva använda 114.114.114.114:53 här.</value>
@@ -527,5 +527,137 @@
   </data>
   <data name="address_settings_restore" xml:space="preserve">
     <value>Återställ standard lyssningsadresser</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>Clear all blacklist rules</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>Minimize to tray when closing</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>Start Simple DNSCrypt in tray</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>Silently install new versions</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>Proxies</value>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>Manage Proxies</value>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>HTTP/HTTPS proxy</value>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>Only for DoH servers</value>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>SOCKS proxy</value>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>You can route all TCP connections to a local Tor node. Tor doesn&apos;t support UDP, so you should enable Force TCP (Advanced Settings) as well.</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Netprobe Timeout</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>Maximum time (in seconds) to wait for network connectivity before initializing the proxy. Useful if the proxy is automatically started at boot, and network connectivity is not guaranteed to be immediately available. Use 0 to disable.</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>Use servers implementing the DNSCrypt protocol</value>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS-over-HTTPS</value>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>Use servers implementing the DNS-over-HTTPS protocol</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>Restore {0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>Backup and restore dnscrypt configuration on update</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>Cloak and Forward</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>Cloaking</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>Cloaking Rules:</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>Cloaking Rules</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>(active cloaking rules)</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>Add a new cloaking rule</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>Remove selected cloaking rule</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>Import existing cloaking rules</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>Export cloaking rules</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>Add new cloaking rule</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>Rule source (eg: www.google.*)</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>Rule target (eg: forcesafesearch.google.com)</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>Forwarding</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>Forwarding Rules:</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>Forwarding Rules</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>(active forwarding rules)</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>Add a new forwarding rule</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>Remove selected forwarding rule</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>Import existing forwarding rules</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>Export forwarding rules</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>Add new forwarding rule</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>Rule source (eg: example.com)</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>Rule target (eg: 9.9.9.9,8.8.8.8)</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>Abort</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>Show &quot;Cloak and Forward&quot; Tab</value>
   </data>
 </root>

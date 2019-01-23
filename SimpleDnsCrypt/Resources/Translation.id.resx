@@ -160,7 +160,7 @@
     <value>Hanya server tanpa filter</value>
   </data>
   <data name="default_settings_configuration_nofilter_tooltip" xml:space="preserve">
-    <value>Server tidak memaksakan daftar hitam miliknya (seperti parental control dan iklan...)</value>
+    <value>Server tidak memaksakan daftar hitam miliknya (seperti kontrol orang tua dan pemblokiran iklan...)</value>
   </data>
   <data name="tabitem_mainmenu" xml:space="preserve">
     <value>Menu Utama</value>
@@ -196,7 +196,7 @@
     <value>Mengunduh signature . . .</value>
   </data>
   <data name="loader_downloading_installer" xml:space="preserve">
-    <value>Mengunduh installer . . .</value>
+    <value>Mengunduh pemasangan . . .</value>
   </data>
   <data name="loader_starting" xml:space="preserve">
     <value>Memulai . . .</value>
@@ -277,19 +277,19 @@
     <value>Catatan Alamat Terblokir</value>
   </data>
   <data name="tabitem_domainblacklist" xml:space="preserve">
-    <value>Daftar Hitam Domain</value>
+    <value>Domain Daftar Hitam</value>
   </data>
   <data name="tabitem_addressblacklist" xml:space="preserve">
-    <value>Daftar Hitam Alamat</value>
+    <value>Alamat Daftar Hitam</value>
   </data>
   <data name="settings" xml:space="preserve">
     <value>Pengaturan</value>
   </data>
   <data name="settings_domain_blacklist" xml:space="preserve">
-    <value>Tampilkan Tab &quot;Daftar Hitam Domain&quot;</value>
+    <value>Tampilkan Tab &quot;Domain Daftar Hitam&quot;</value>
   </data>
   <data name="settings_address_blacklist" xml:space="preserve">
-    <value>Tampilkan Tab &quot;Daftar Hitam Alamat&quot;</value>
+    <value>Tampilkan Tab &quot;Alamat Daftar Hitam&quot;</value>
   </data>
   <data name="settings_domain_block" xml:space="preserve">
     <value>Tampilkan Tab &quot;Catatan Domain Terblokir&quot;</value>
@@ -301,7 +301,7 @@
     <value>Tampilkan Tab &quot;Catatan Kueri&quot;</value>
   </data>
   <data name="tabitem_resolvers" xml:space="preserve">
-    <value>Resolvers</value>
+    <value>Resolver</value>
   </data>
   <data name="tabitem_advanced_settings" xml:space="preserve">
     <value>Pengaturan Lanjutan</value>
@@ -325,7 +325,7 @@
     <value>Apakah anda ingin menghapus layanan DNSCrypt yang terpasang pada Windows?</value>
   </data>
   <data name="dialog_uninstall_title" xml:space="preserve">
-    <value>Menghapus layanan</value>
+    <value>Mencopot layanan</value>
   </data>
   <data name="advanced_settings_uninstall_title" xml:space="preserve">
     <value>Menghapus layanan</value>
@@ -340,7 +340,7 @@
     <value>Terapkan pengaturan</value>
   </data>
   <data name="advanced_settings_dnscache" xml:space="preserve">
-    <value>DNS Cache</value>
+    <value>Tembolok DNS</value>
   </data>
   <data name="resolvers_dnscrypt_mode_header" xml:space="preserve">
     <value>Mode DNSCypt</value>
@@ -406,7 +406,7 @@
     <value>Saluran Pembaruan:</value>
   </data>
   <data name="advanced_settings_dnscache_content" xml:space="preserve">
-    <value>Gunakan cache DNS untuk memperkecil latensi dan lalu lintas data keluar</value>
+    <value>Gunakan tembolok DNS untuk memperkecil latensi dan lalu lintas data keluar</value>
   </data>
   <data name="advanced_settings_blockipv6" xml:space="preserve">
     <value>Blokir IPv6</value>
@@ -511,21 +511,164 @@
     <value>Keluar</value>
   </data>
   <data name="address_settings_listen_addresses" xml:space="preserve">
-    <value>Listen Addresses</value>
+    <value>Alamat yang didengarkan</value>
   </data>
   <data name="address_settings_manage_listen_addresses" xml:space="preserve">
-    <value>Manage Listen Addresses</value>
+    <value>Atur Alamat yang didengarkan</value>
   </data>
   <data name="address_settings_description" xml:space="preserve">
-    <value>List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.</value>
+    <value>Daftar alamat local dan port untuk didengarkan, bisa berupa IPv4 dan/atau IPv6</value>
   </data>
   <data name="address_settings_add" xml:space="preserve">
-    <value>Add new listen address</value>
+    <value>Tambah alamat baru untuk didengarkan</value>
   </data>
   <data name="address_settings_remove" xml:space="preserve">
-    <value>Remove selected listen address</value>
+    <value>Hapus alamat yang dipilih</value>
   </data>
   <data name="address_settings_restore" xml:space="preserve">
-    <value>Restore default listen addresses</value>
+    <value>Pulihkan ke alamat default</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>Hapus seluruh aturan daftar hitam</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>Kecilkan kedalam try jika ditutup</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>Jalankan Simple DNSCrypt dalam mode tray</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>Pasang versi terbaru secara senyap</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>Proksi</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>Kelola proksi</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>Proksi HTTP/HTTPS</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>Hanya untuk server DoH</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>Proksi SOCKS</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>Anda dapat mengarahkan semua koneksi TCP ke simpul Tor lokal. Tor tidak mendukung UDP, jadi Anda harus mengaktifkan Paksa TCP (Pengaturan Tingkat Lanjut) juga.</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Waktu habis Netprobe</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>Waktu maksimum (dalam detik) untuk menunggu konektivitas jaringan sebelum menginisialisasi proxy. Berguna jika proxy secara otomatis dimulai saat boot, dan konektivitas jaringan tidak dijamin akan segera tersedia. Gunakan 0 untuk menonaktifkan.</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>Gunakan server yang mengimplementasikan protokol DNSCrypt</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS Melewati HTTPS</value>
+    <comment>Fuzzy</comment>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>Gunakan server yang menerapkan protokol DNS-over-HTTPS</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>Memulihkan {0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>Cadangkan dan pulihkan konfigurasi dnscrypt saat pembaruan</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>Jubah dan Maju</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>Cloaking</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>Aturan Cloaking:</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>Aturan Cloaking</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>(aturan penyelubungan aktif)</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>Tambahkan aturan penyelubungan baru</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>Hapus aturan penyelubungan yang dipilih</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>Impor aturan penyelubungan yang ada</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>Ekspor aturan penyelubungan</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>Tambahkan aturan penyelubungan baru</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>Sumber aturan (mis .: www.google. *)</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>Target aturan (mis: forcesafesearch.google.com)</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>Penerusan</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>Aturan Penerusan:</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>Aturan Penerusan</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>(aturan penerusan aktif)</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>Tambahkan aturan penerusan baru</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>Hapus aturan penerusan yang dipilih</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>Impor aturan penerusan yang ada</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>Aturan penerusan ekspor</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>Tambahkan aturan penerusan baru</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>Sumber aturan (misalnya: example.com)</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>Target aturan (mis: 9.9.9.9.8.8.8.8)</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>Menambahkan</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>Menggugurkan</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>Tampilkan Tab &quot;Cloak and Forward&quot;</value>
   </data>
 </root>

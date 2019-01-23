@@ -30,7 +30,8 @@ namespace SimpleDnsCrypt.ViewModels
 		DomainBlockLogTab,
 		DomainBlacklistTab,
 		AddressBlockLogTab,
-		AddressBlacklistTab
+		AddressBlacklistTab,
+		CloakAndForwardTab
 	}
 
 	[Export(typeof(MainViewModel))]
@@ -44,9 +45,11 @@ namespace SimpleDnsCrypt.ViewModels
 		private DnscryptProxyConfiguration _dnscryptProxyConfiguration;
 		private DomainBlacklistViewModel _domainBlacklistViewModel;
 		private DomainBlockLogViewModel _domainBlockLogViewModel;
+		private CloakAndForwardViewModel _cloakAndForwardViewModel;
 		private bool _isDnsCryptAutomaticModeEnabled;
 		private bool _isOperatingAsGlobalResolver;
 		private bool _isResolverRunning;
+		private bool _isServiceInstalled;
 		private bool _isSavingConfiguration;
 		private bool _isUninstallingService;
 		private bool _isWorkingOnService;
@@ -63,6 +66,7 @@ namespace SimpleDnsCrypt.ViewModels
 
 		private SettingsViewModel _settingsViewModel;
 		private ListenAddressesViewModel _listenAddressesViewModel;
+		private ProxiesViewModel _proxiesViewModel;
 		private bool _showHiddenCards;
 		private string _windowTitle;
 
@@ -90,11 +94,13 @@ namespace SimpleDnsCrypt.ViewModels
 			};
 			_settingsViewModel.PropertyChanged += SettingsViewModelOnPropertyChanged;
 			_listenAddressesViewModel = new ListenAddressesViewModel(_windowManager, _events);
+			_proxiesViewModel = new ProxiesViewModel(_windowManager, _events);
 			_queryLogViewModel = new QueryLogViewModel(_windowManager, _events);
 			_domainBlockLogViewModel = new DomainBlockLogViewModel(_windowManager, _events);
 			_domainBlacklistViewModel = new DomainBlacklistViewModel(_windowManager, _events);
 			_addressBlockLogViewModel = new AddressBlockLogViewModel(_windowManager, _events);
 			_addressBlacklistViewModel = new AddressBlacklistViewModel(_windowManager, _events);
+			_cloakAndForwardViewModel = new CloakAndForwardViewModel(_windowManager, _events);
 			_resolvers = new BindableCollection<AvailableResolver>();
 		}
 
@@ -176,6 +182,17 @@ namespace SimpleDnsCrypt.ViewModels
 			}
 		}
 
+		public CloakAndForwardViewModel CloakAndForwardViewModel
+		{
+			get => _cloakAndForwardViewModel;
+			set
+			{
+				if (value.Equals(_cloakAndForwardViewModel)) return;
+				_cloakAndForwardViewModel = value;
+				NotifyOfPropertyChange(() => CloakAndForwardViewModel);
+			}
+		}
+
 		public QueryLogViewModel QueryLogViewModel
 		{
 			get => _queryLogViewModel;
@@ -195,6 +212,17 @@ namespace SimpleDnsCrypt.ViewModels
 				if (value.Equals(_settingsViewModel)) return;
 				_settingsViewModel = value;
 				NotifyOfPropertyChange(() => SettingsViewModel);
+			}
+		}
+
+		public ProxiesViewModel ProxiesViewModel
+		{
+			get => _proxiesViewModel;
+			set
+			{
+				if (value.Equals(_proxiesViewModel)) return;
+				_proxiesViewModel = value;
+				NotifyOfPropertyChange(() => ProxiesViewModel);
 			}
 		}
 
@@ -270,6 +298,17 @@ namespace SimpleDnsCrypt.ViewModels
 				NotifyOfPropertyChange(() => IsResolverRunning);
 			}
 		}
+
+		public bool IsServiceInstalled
+		{
+			get => _isServiceInstalled;
+			set
+			{
+				_isServiceInstalled = value;
+				NotifyOfPropertyChange(() => IsServiceInstalled);
+			}
+		}
+
 
 		public bool IsSavingConfiguration
 		{
@@ -355,10 +394,15 @@ namespace SimpleDnsCrypt.ViewModels
 		{
 			if (DnsCryptProxyManager.IsDnsCryptProxyInstalled())
 			{
+				_isServiceInstalled = true;
 				if (DnsCryptProxyManager.IsDnsCryptProxyRunning())
 				{
 					_isResolverRunning = true;
 				}
+			}
+			else
+			{
+				_isServiceInstalled = false;
 			}
 
 			if (DnscryptProxyConfiguration != null && (DnscryptProxyConfiguration.server_names == null ||
@@ -405,6 +449,24 @@ namespace SimpleDnsCrypt.ViewModels
 			if (DnscryptProxyConfiguration?.fallback_resolver != null)
 			{
 				FallbackResolver = DnscryptProxyConfiguration.fallback_resolver;
+			}
+
+			if (!string.IsNullOrEmpty(DnscryptProxyConfiguration?.cloaking_rules))
+			{
+				if (!File.Exists(DnscryptProxyConfiguration.cloaking_rules))
+				{
+					File.Create(DnscryptProxyConfiguration.cloaking_rules).Dispose();
+				}
+				CloakAndForwardViewModel.IsCloakingEnabled = true;
+			}
+
+			if (!string.IsNullOrEmpty(DnscryptProxyConfiguration?.forwarding_rules))
+			{
+				if (!File.Exists(DnscryptProxyConfiguration.forwarding_rules))
+				{
+					File.Create(DnscryptProxyConfiguration.forwarding_rules).Dispose();
+				}
+				CloakAndForwardViewModel.IsForwardingEnabled = true;
 			}
 		}
 
@@ -453,6 +515,11 @@ namespace SimpleDnsCrypt.ViewModels
 							if (SelectedTab == Tabs.AddressBlacklistTab)
 								SelectedTabIndex = 0;
 						break;
+					case "IsCloakAndForwardTabVisible":
+						if (!SettingsViewModel.IsCloakAndForwardTabVisible)
+							if (SelectedTab == Tabs.CloakAndForwardTab)
+								SelectedTabIndex = 0;
+						break;
 				}
 			}
 		}
@@ -470,6 +537,7 @@ namespace SimpleDnsCrypt.ViewModels
 				{
 					case "mainTab":
 						SelectedTab = Tabs.MainTab;
+						IsServiceInstalled = DnsCryptProxyManager.IsDnsCryptProxyInstalled();
 						_isResolverRunning = DnsCryptProxyManager.IsDnsCryptProxyRunning();
 						NotifyOfPropertyChange(() => IsResolverRunning);
 						break;
@@ -482,6 +550,9 @@ namespace SimpleDnsCrypt.ViewModels
 						break;
 					case "queryLogTab":
 						SelectedTab = Tabs.QueryLogTab;
+						break;
+					case "cloakAndForwardTab":
+						SelectedTab = Tabs.CloakAndForwardTab;
 						break;
 					case "domainBlockLogTab":
 						SelectedTab = Tabs.DomainBlockLogTab;
@@ -523,6 +594,51 @@ namespace SimpleDnsCrypt.ViewModels
 			settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
 			var result = _windowManager.ShowDialog(SettingsViewModel, null, settings);
 			if (!result) Properties.Settings.Default.Save();
+		}
+
+		public void Proxies()
+		{
+			dynamic settings = new ExpandoObject();
+			settings.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+			ProxiesViewModel.WindowTitle = LocalizationEx.GetUiString("proxy_manage_proxies", Thread.CurrentThread.CurrentCulture);
+			ProxiesViewModel.HttpProxyInput = string.IsNullOrEmpty(DnscryptProxyConfiguration.http_proxy) ? "" : DnscryptProxyConfiguration.http_proxy;
+			ProxiesViewModel.SocksProxyInput = string.IsNullOrEmpty(DnscryptProxyConfiguration.proxy) ? "" : DnscryptProxyConfiguration.proxy;
+			var result = _windowManager.ShowDialog(ProxiesViewModel, null, settings);
+			if (result) return;
+			var saveAdvancedSettings = false;
+
+			if (string.IsNullOrEmpty(ProxiesViewModel.HttpProxyInput))
+			{
+				if (!string.IsNullOrEmpty(DnscryptProxyConfiguration.http_proxy))
+				{
+					DnscryptProxyConfiguration.http_proxy = null;
+					saveAdvancedSettings = true;
+				}
+			}
+			else
+			{
+				DnscryptProxyConfiguration.http_proxy = ProxiesViewModel.HttpProxyInput;
+				saveAdvancedSettings = true;
+			}
+
+			if (string.IsNullOrEmpty(ProxiesViewModel.SocksProxyInput))
+			{
+				if (!string.IsNullOrEmpty(DnscryptProxyConfiguration.proxy))
+				{
+					DnscryptProxyConfiguration.proxy = null;
+					saveAdvancedSettings = true;
+				}
+			}
+			else
+			{
+				DnscryptProxyConfiguration.proxy = ProxiesViewModel.SocksProxyInput;
+				saveAdvancedSettings = true;
+			}
+
+			if (saveAdvancedSettings)
+			{
+				SaveAdvancedSettings();
+			}
 		}
 
 		public async void ListenAddresses()
@@ -597,6 +713,8 @@ namespace SimpleDnsCrypt.ViewModels
 					_dnscryptProxyConfiguration = DnscryptProxyConfigurationManager.DnscryptProxyConfiguration;
 					IsWorkingOnService = true;
 					if (DnsCryptProxyManager.IsDnsCryptProxyInstalled())
+					{
+						IsServiceInstalled = true;
 						if (DnsCryptProxyManager.IsDnsCryptProxyRunning())
 						{
 							await Task.Run(() => { DnsCryptProxyManager.Restart(); }).ConfigureAwait(false);
@@ -607,6 +725,11 @@ namespace SimpleDnsCrypt.ViewModels
 							await Task.Run(() => { DnsCryptProxyManager.Start(); }).ConfigureAwait(false);
 							await Task.Delay(Global.ServiceStartTime).ConfigureAwait(false);
 						}
+					}
+					else
+					{
+						IsServiceInstalled = false;
+					}
 				}
 
 				_isResolverRunning = DnsCryptProxyManager.IsDnsCryptProxyRunning();
@@ -638,6 +761,7 @@ namespace SimpleDnsCrypt.ViewModels
 			{
 				if (DnsCryptProxyManager.IsDnsCryptProxyInstalled())
 				{
+					IsServiceInstalled = true;
 					// service is installed, just start them
 					await Task.Run(() => { DnsCryptProxyManager.Start(); }).ConfigureAwait(false);
 					await Task.Delay(Global.ServiceStartTime).ConfigureAwait(false);
@@ -651,8 +775,13 @@ namespace SimpleDnsCrypt.ViewModels
 					await Task.Delay(Global.ServiceInstallTime).ConfigureAwait(false);
 					if (DnsCryptProxyManager.IsDnsCryptProxyInstalled())
 					{
+						IsServiceInstalled = true;
 						await Task.Run(() => { DnsCryptProxyManager.Start(); }).ConfigureAwait(false);
 						await Task.Delay(Global.ServiceStartTime).ConfigureAwait(false);
+					}
+					else
+					{
+						IsServiceInstalled = false;
 					}
 
 					_isResolverRunning = DnsCryptProxyManager.IsDnsCryptProxyRunning();
@@ -818,6 +947,19 @@ namespace SimpleDnsCrypt.ViewModels
 
 			foreach (var resolver in allResolversWithoutFilters)
 			{
+				if (_dnscryptProxyConfiguration.doh_servers)
+					if (!_dnscryptProxyConfiguration.dnscrypt_servers)
+						if (!resolver.Protocol.Equals("DoH"))
+							continue;
+
+				if (_dnscryptProxyConfiguration.dnscrypt_servers)
+					if (!_dnscryptProxyConfiguration.doh_servers)
+						if (!resolver.Protocol.Equals("DNSCrypt"))
+							continue;
+
+				if (!_dnscryptProxyConfiguration.doh_servers && !_dnscryptProxyConfiguration.dnscrypt_servers)
+					continue;
+
 				if (_dnscryptProxyConfiguration.require_dnssec)
 					if (!resolver.DnsSec)
 						continue;
@@ -901,15 +1043,25 @@ namespace SimpleDnsCrypt.ViewModels
 				ReloadLoadNetworkInterfaces();
 				IsUninstallingService = false;
 				if (!DnsCryptProxyManager.IsDnsCryptProxyInstalled())
+				{
+					IsServiceInstalled = false;
 					_windowManager.ShowMetroMessageBox(
-						LocalizationEx.GetUiString("message_content_uninstallation_successful", Thread.CurrentThread.CurrentCulture),
-						LocalizationEx.GetUiString("message_title_uninstallation_successful", Thread.CurrentThread.CurrentCulture),
+						LocalizationEx.GetUiString("message_content_uninstallation_successful",
+							Thread.CurrentThread.CurrentCulture),
+						LocalizationEx.GetUiString("message_title_uninstallation_successful",
+							Thread.CurrentThread.CurrentCulture),
 						MessageBoxButton.OK, BoxType.Default);
+				}
 				else
+				{
+					IsServiceInstalled = true;
 					_windowManager.ShowMetroMessageBox(
-						LocalizationEx.GetUiString("message_content_uninstallation_error", Thread.CurrentThread.CurrentCulture),
-						LocalizationEx.GetUiString("message_title_uninstallation_error", Thread.CurrentThread.CurrentCulture),
+						LocalizationEx.GetUiString("message_content_uninstallation_error",
+							Thread.CurrentThread.CurrentCulture),
+						LocalizationEx.GetUiString("message_title_uninstallation_error",
+							Thread.CurrentThread.CurrentCulture),
 						MessageBoxButton.OK, BoxType.Warning);
+				}
 			}
 		}
 

@@ -32,35 +32,36 @@
             <converters:IntegerToBoolConverter x:Key="IntegerToBoolConverter" />
             <converters:IntegerToVisibilityConverter x:Key="IntegerToVisibilityConverter" />
             <converters:HeightConverter x:Key="HeightConverter" />
+            <converters:UninstallToEnableConverter x:Key="UninstallToEnableConverter" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <Grid Background="#198AB328">
-            <Border BorderThickness="1" Grid.Row="0" Grid.Column="0" Background="#198AB328" Margin="10"
+    <Grid Background="#198AB328">
+        <Border BorderThickness="1" Grid.Row="0" Grid.Column="0" Background="#198AB328" Margin="10"
                     Padding="10">
-                <Border.BorderBrush>
-                    <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile" Opacity="0.4">
-                        <DrawingBrush.Drawing>
-                            <DrawingGroup>
-                                <GeometryDrawing Brush="#FF8ab329">
-                                    <GeometryDrawing.Geometry>
-                                        <GeometryGroup>
-                                            <RectangleGeometry Rect="0,0,50,50" />
-                                            <RectangleGeometry Rect="50,50,50,50" />
-                                        </GeometryGroup>
-                                    </GeometryDrawing.Geometry>
-                                </GeometryDrawing>
-                            </DrawingGroup>
-                        </DrawingBrush.Drawing>
-                    </DrawingBrush>
-                </Border.BorderBrush>
+            <Border.BorderBrush>
+                <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile" Opacity="0.4">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="#FF8ab329">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,50,50" />
+                                        <RectangleGeometry Rect="50,50,50,50" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.BorderBrush>
 
-                <TabControl controls:TabControlHelper.Transition="Right" Background="Transparent"
+            <TabControl controls:TabControlHelper.Transition="Right" Background="Transparent"
                             SelectedIndex="{Binding SelectedTabIndex}"
                             cal:Message.Attach="[Event SelectionChanged] = [Action TabControl_SelectionChanged($eventArgs)]">
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="mainTab"
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="mainTab"
                              Header="{lex:Loc Key=tabitem_mainmenu}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10,10" Margin="0,0,0,0"
                                         MinHeight="75" DockPanel.Dock="Top"
@@ -102,35 +103,49 @@
                                             </TextBlock>
                                         </Grid>
                                         <UniformGrid Columns="2">
-                                            <StackPanel Orientation="Vertical">
-                                                <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.ipv4_servers}"
+                                            <StackPanel Orientation="Horizontal">
+                                                <StackPanel Orientation="Vertical">
+                                                    <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.ipv4_servers}"
                                                           Margin="5"
                                                           Content="{lex:Loc Key=default_settings_configuration_ipv4}"
                                                           ToolTip="{lex:Loc Key=default_settings_configuration_ipv4_tooltip}"
                                                           Cursor="Hand" Foreground="#FF575757" />
-                                                <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.ipv6_servers}"
+                                                    <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.ipv6_servers}"
                                                           Margin="5"
                                                           Content="{lex:Loc Key=default_settings_configuration_ipv6}"
                                                           ToolTip="{lex:Loc Key=default_settings_configuration_ipv6_tooltip}"
                                                           Cursor="Hand" Foreground="#FF575757" />
-                                                <CheckBox
+                                                    <CheckBox
                                                     IsChecked="{Binding DnscryptProxyConfiguration.require_dnssec}"
                                                     Margin="5"
                                                     Content="{lex:Loc Key=default_settings_configuration_dnssec}"
                                                     ToolTip="{lex:Loc Key=default_settings_configuration_dnssec_tooltip}"
                                                     Cursor="Hand" Foreground="#FF575757" />
-                                                <CheckBox
+                                                    <CheckBox
                                                     IsChecked="{Binding DnscryptProxyConfiguration.require_nolog}"
                                                     Margin="5"
                                                     Content="{lex:Loc Key=default_settings_configuration_nolog}"
                                                     ToolTip="{lex:Loc Key=default_settings_configuration_nolog_tooltip}"
                                                     Cursor="Hand" Foreground="#FF575757" />
-                                                <CheckBox
+                                                    <CheckBox
                                                     IsChecked="{Binding DnscryptProxyConfiguration.require_nofilter}"
                                                     Margin="5"
                                                     Content="{lex:Loc Key=default_settings_configuration_nofilter}"
                                                     ToolTip="{lex:Loc Key=default_settings_configuration_nofilter_tooltip}"
                                                     Cursor="Hand" Foreground="#FF575757" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Vertical">
+                                                    <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.dnscrypt_servers}"
+                                                              Margin="5"
+                                                              Content="{lex:Loc Key=default_settings_configuration_dnscrypt}"
+                                                              ToolTip="{lex:Loc Key=default_settings_configuration_dnscrypt_tooltip}"
+                                                              Cursor="Hand" Foreground="#FF575757" />
+                                                    <CheckBox IsChecked="{Binding DnscryptProxyConfiguration.doh_servers}"
+                                                              Margin="5"
+                                                              Content="{lex:Loc Key=default_settings_configuration_doh}"
+                                                              ToolTip="{lex:Loc Key=default_settings_configuration_doh_tooltip}"
+                                                              Cursor="Hand" Foreground="#FF575757" />
+                                                </StackPanel>
                                             </StackPanel>
                                             <Grid>
                                                 <Grid.RowDefinitions>
@@ -143,7 +158,7 @@
                                                         VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                                         Content="{lex:Loc Key=default_settings_apply_settings}"
                                                         Cursor="Hand"
-                                                        Style="{DynamicResource AccentedSquareButtonStyle}" />
+                                                        Style="{DynamicResource CustomAccentedSquareButtonStyle}" />
                                             </Grid>
                                         </UniformGrid>
                                     </StackPanel>
@@ -194,6 +209,7 @@
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="35" />
+                                                <RowDefinition Height="40" />
                                             </Grid.RowDefinitions>
                                             <Label Foreground="#FF575757" Grid.Row="0" Grid.Column="0"
                                                    Content="{lex:Loc Key=default_settings_service}"
@@ -213,6 +229,31 @@
                                                 IsChecked="{Binding IsResolverRunning}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Top">
                                             </controls:ToggleSwitchButton>
+
+                                            <Label Foreground="#FF575757" Grid.Row="1" Grid.Column="0"
+                                                   Content="{lex:Loc Key=advanced_settings_uninstall_text}"
+                                                   VerticalAlignment="Bottom"
+                                                   HorizontalAlignment="Left" Margin="0,0,0,5">
+                                            </Label>
+                                            <controls:MetroProgressBar IsIndeterminate="True" Grid.Row="1" Grid.Column="1"
+                                                                       Visibility="{Binding IsUninstallingService, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                                       Width="250" Foreground="{DynamicResource AccentColorBrush}"
+                                                                       HorizontalAlignment="Center" Margin="50,14,50,15"
+                                                                       VerticalAlignment="Center" />
+                                            <Button x:Name="UninstallService" Grid.Row="1" Grid.Column="2"
+                                                    Style="{DynamicResource CustomAccentedSquareButtonStyle}"
+                                                    Margin="0,10,0,0" HorizontalAlignment="Right"
+                                                    Content="{lex:Loc Key=advanced_settings_uninstall_button}"
+                                                    Cursor="Hand">
+                                                <Button.IsEnabled>
+                                                    <MultiBinding
+                                                        Converter="{StaticResource UninstallToEnableConverter}">
+                                                        <Binding Path="IsUninstallingService" />
+                                                        <Binding Path="IsServiceInstalled" />
+                                                    </MultiBinding>
+                                                </Button.IsEnabled>
+                                            </Button>
+
                                         </Grid>
                                     </StackPanel>
                                 </Border>
@@ -307,11 +348,13 @@
                                     </StackPanel>
                                 </Border>
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="resolverTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="resolverTab"
                              Header="{lex:Loc Key=tabitem_resolvers}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,14,0,0"
                                         DockPanel.Dock="Top"
@@ -412,7 +455,7 @@
                                                     IsEnabled="{Binding Resolvers.Count, Converter={StaticResource IntegerToBoolConverter}}"
                                                     Content="{lex:Loc Key=default_settings_apply_settings}"
                                                     Width="Auto" HorizontalAlignment="Right"
-                                                    Style="{DynamicResource AccentedSquareButtonStyle}" />
+                                                    Style="{DynamicResource CustomAccentedSquareButtonStyle}" />
                                         </Grid>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBlock VerticalAlignment="Center"
@@ -472,7 +515,7 @@
                                                                     </Grid.RowDefinitions>
                                                                     <TextBlock FontWeight="Bold" Foreground="White"
                                                                                Margin="5,2" Grid.Row="0"
-                                                                               Text="{Binding Name}" />
+                                                                               Text="{Binding DisplayName}" />
                                                                     <TextBlock Foreground="White" Margin="5,2"
                                                                                Grid.Row="1" FontSize="10"
                                                                                Text="{Binding Description}"
@@ -490,12 +533,14 @@
                                     </StackPanel>
                                 </Border>
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="advancedSettingsTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="advancedSettingsTab"
                              Header="{lex:Loc Key=tabitem_advanced_settings}"
                              Visibility="{Binding SettingsViewModel.IsAdvancedSettingsTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,14,0,0"
                                         DockPanel.Dock="Top"
@@ -553,7 +598,7 @@
                                             </TextBlock>
                                             <Button IsEnabled="{Binding IsWorkingOnService, Converter={StaticResource ReverseBoolToEnabledConverter}}" Width="Auto"
                                                     Grid.Row="0" Grid.Column="1" Cursor="Hand" Content="{lex:Loc Key=address_settings_manage_listen_addresses}" x:Name="ListenAddresses" Margin="0,0,0,5"
-                                                    HorizontalAlignment="Right" Style="{DynamicResource AccentedSquareButtonStyle}" VerticalAlignment="Top"></Button>
+                                                    HorizontalAlignment="Right" Style="{DynamicResource CustomAccentedSquareButtonStyle}" VerticalAlignment="Top"></Button>
                                         </Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
@@ -767,34 +812,6 @@
                                                 </Validation.ErrorTemplate>
                                             </TextBox>
                                         </Grid>
-                                        <Button x:Name="SaveAdvancedSettings"
-                                                Cursor="Hand"
-                                                Content="{lex:Loc Key=default_settings_apply_settings}"
-                                                Width="Auto" HorizontalAlignment="Right"
-                                                Style="{DynamicResource AccentedSquareButtonStyle}" Margin="0,15,5,5" />
-                                    </StackPanel>
-                                </Border>
-                                <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,14,0,0"
-                                        DockPanel.Dock="Bottom"
-                                        IsEnabled="{Binding IsSavingConfiguration, Converter={StaticResource ReverseBoolToEnabledConverter}}">
-                                    <Border.BorderBrush>
-                                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
-                                                      Opacity="0.4">
-                                            <DrawingBrush.Drawing>
-                                                <DrawingGroup>
-                                                    <GeometryDrawing Brush="#FF8ab329">
-                                                        <GeometryDrawing.Geometry>
-                                                            <GeometryGroup>
-                                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                                <RectangleGeometry Rect="50,50,50,50" />
-                                                            </GeometryGroup>
-                                                        </GeometryDrawing.Geometry>
-                                                    </GeometryDrawing>
-                                                </DrawingGroup>
-                                            </DrawingBrush.Drawing>
-                                        </DrawingBrush>
-                                    </Border.BorderBrush>
-                                    <StackPanel Orientation="Vertical">
                                         <Grid>
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto" />
@@ -802,48 +819,75 @@
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
                                             <iconPacks:PackIconMaterial Grid.Column="0" Grid.Row="0" Height="20"
-                                                                        Width="20" Kind="Eraser" Opacity="0.7"
+                                                                        Width="20" Kind="Timelapse"
+                                                                        Opacity="0.7"
                                                                         Foreground="#FF8ab329"
                                                                         HorizontalAlignment="Left"
                                                                         VerticalAlignment="Center" />
                                             <TextBlock Grid.Column="1" Grid.Row="0"
-                                                       Text="{lex:Loc Key=advanced_settings_uninstall_title}"
+                                                       Text="{lex:Loc Key=advanced_settings_netprobe_timeout}"
                                                        TextWrapping="Wrap" VerticalAlignment="Center"
                                                        Foreground="#FF8ab329" FontSize="20"
                                                        Opacity="0.7" Margin="5,0,0,3" FontWeight="Bold">
                                             </TextBlock>
                                         </Grid>
-                                        <TextBlock
-                                            Text="{lex:Loc Key=advanced_settings_uninstall_text}"
-                                            TextWrapping="Wrap" Foreground="#FF575757" FontSize="14">
-                                        </TextBlock>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="250" />
+                                                <ColumnDefinition Width="32.556" />
+                                                <ColumnDefinition Width="517.444"/>
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
-                                            <controls:MetroProgressBar IsIndeterminate="True" Grid.Column="0"
-                                                                       Visibility="{Binding IsUninstallingService, Converter={StaticResource BoolToVisibilityConverter}}"
-                                                                       Width="220"
-                                                                       Margin="0" HorizontalAlignment="Center"
-                                                                       VerticalAlignment="Center" />
-                                            <Button x:Name="UninstallService" Grid.Column="1"
-                                                    Width="180" Style="{DynamicResource AccentedSquareButtonStyle}"
-                                                    Margin="0,10,0,0" HorizontalAlignment="Right"
-                                                    Content="{lex:Loc Key=advanced_settings_uninstall_button}"
-                                                    Cursor="Hand"
-                                                    IsEnabled="{Binding IsUninstallingService, Converter={StaticResource ReverseBoolToEnabledConverter}}">
-                                            </Button>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Foreground="#FF575757" Grid.Row="0" Grid.Column="0"
+                                                       TextWrapping="Wrap"
+                                                       Text="{lex:Loc Key=advanced_settings_netprobe_timeout_content}"
+                                                       VerticalAlignment="Bottom"
+                                                       HorizontalAlignment="Left" Margin="0,0,0,0" Grid.ColumnSpan="2">
+                                            </TextBlock>
+                                            <controls:NumericUpDown IsEnabled="{Binding IsWorkingOnService, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                                    Grid.Row="0" Grid.Column="2" Minimum="0" Maximum="65000" Value="{Binding DnscryptProxyConfiguration.netprobe_timeout}"
+                                                                    Background="#FF8ab329"
+                                                                    Opacity="0.8" BorderBrush="#FF575757"
+                                                                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                                    TextAlignment="Right"/>
+                                           <!-- <TextBox
+                                                IsEnabled="{Binding IsWorkingOnService, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                Grid.Row="0" Grid.Column="2" Cursor="Hand" Width="Auto"
+                                               
+                                                controls:TextBoxHelper.Watermark="0" Background="#FF8ab329"
+                                                Opacity="0.8" BorderBrush="#FF575757"
+                                                HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                TextAlignment="Right" IsTabStop="False" Margin="0,0,-1,0">
+                                                <Validation.ErrorTemplate>
+                                                    <ControlTemplate>
+                                                        <Grid>
+                                                            <Border BorderThickness="1" BorderBrush="DarkOrange">
+                                                                <AdornedElementPlaceholder />
+                                                            </Border>
+                                                        </Grid>
+                                                    </ControlTemplate>
+                                                </Validation.ErrorTemplate>
+                                            </TextBox>-->
                                         </Grid>
+                                        <Button x:Name="SaveAdvancedSettings"
+                                                Cursor="Hand"
+                                                Content="{lex:Loc Key=default_settings_apply_settings}"
+                                                Width="Auto" HorizontalAlignment="Right"
+                                                Style="{DynamicResource CustomAccentedSquareButtonStyle}" Margin="0,15,5,5" />
                                     </StackPanel>
                                 </Border>
+
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="queryLogTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="queryLogTab"
                              Header="{lex:Loc Key=tabitem_querylog}"
                              Visibility="{Binding SettingsViewModel.IsQueryLogTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
                                         DataContext="{Binding QueryLogViewModel}" DockPanel.Dock="Top">
@@ -1061,12 +1105,455 @@
                                     </Grid>
                                 </Border>
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="domainBlockLogTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="cloakAndForwardTab"
+                             Visibility="{Binding SettingsViewModel.IsCloakAndForwardTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
+                             Header="{lex:Loc Key=tabitem_cloakandforward}">
+                    <TabItem.Content>
+                        <DockPanel Margin="0,10,0,0">
+                            <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
+                                        DataContext="{Binding CloakAndForwardViewModel}" DockPanel.Dock="Top">
+                                <Border.BorderBrush>
+                                    <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
+                                                      Opacity="0.4">
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <GeometryDrawing Brush="#FF8ab329">
+                                                    <GeometryDrawing.Geometry>
+                                                        <GeometryGroup>
+                                                            <RectangleGeometry Rect="0,0,50,50" />
+                                                            <RectangleGeometry Rect="50,50,50,50" />
+                                                        </GeometryGroup>
+                                                    </GeometryDrawing.Geometry>
+                                                </GeometryDrawing>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Border.BorderBrush>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <iconPacks:PackIconMaterial Grid.Column="0" Grid.Row="0" Height="20"
+                                                                    Width="20" Kind="AccountConvert"
+                                                                    Opacity="0.7"
+                                                                    Foreground="#FF8ab329"
+                                                                    HorizontalAlignment="Left"
+                                                                    VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Grid.Row="0"
+                                                   Text="{lex:Loc Key=cloaking}"
+                                                   TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Foreground="#FF8ab329" FontSize="20"
+                                                   Opacity="0.7" Margin="5,0,0,0" FontWeight="Bold">
+                                    </TextBlock>
+                                    <controls:ToggleSwitchButton HorizontalAlignment="Right" Margin="0,0,5,0"
+                                                                     Cursor="Hand"
+                                                                     IsChecked="{Binding IsCloakingEnabled}"
+                                                                     Grid.Column="1" Grid.Row="0" />
+                                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label MinWidth="120" Grid.Column="0" VerticalContentAlignment="Center"
+                                                   Foreground="#FF575757" Content="{lex:Loc Key=cloaking_path}"
+                                                   Height="30" VerticalAlignment="Top" />
+                                        <TextBox Grid.Column="1" Text="{Binding CloakingRulesFile}"
+                                                     Background="#FF8ab329"
+                                                     Opacity="0.4" BorderBrush="#FF575757"
+                                                     MinWidth="560" IsReadOnly="True"
+                                                     VerticalContentAlignment="Center"
+                                                     Margin="0,0,0,0" />
+                                        <Button Grid.Column="2" x:Name="ChangeCloakingRulesFile"
+                                                    cal:Message.Attach="ChangeCloakingRulesFile"
+                                                    Background="White"
+                                                    IsEnabled="{Binding IsCloakingEnabled, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Cursor="Hand"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    BorderBrush="{DynamicResource AccentColorBrush}"
+                                                    FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                    Margin="15,0,0,0">
+                                            <iconPacks:PackIconMaterial
+                                                    Kind="DotsHorizontal"
+                                                    Width="15"
+                                                    Height="15"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Foreground="{DynamicResource AccentColorBrush}" />
+                                            <Button.ToolTip>
+                                                <Label
+                                                        Content="{lex:Loc Key=button_select_path}"
+                                                        FontWeight="DemiBold" />
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
+                                                Grid.Row="2">
+                                        <Label Foreground="#FF575757"
+                                               FontSize="16" FontWeight="Bold"
+                                               Content="{lex:Loc Key=cloaking_rules_header}"
+                                               VerticalAlignment="Center" />
+                                        <Label Foreground="#FF575757"
+                                               FontSize="12"
+                                               Content="{lex:Loc Key=cloaking_rules_sub_header}"
+                                               Margin="0,2,0,0"
+                                               VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ListView BorderBrush="#198AB328" Grid.Column="0"
+                                                      IsEnabled="{Binding IsWorking, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                                      ScrollViewer.CanContentScroll="True"
+                                                      MinHeight="180" MinWidth="680"
+                                                      SelectedItem="{Binding Path=SelectedCloakingEntry}"
+                                                      ItemsSource="{Binding Path=CloakingRules}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <UniformGrid Columns="2">
+                                                        <Label Content="{Binding Key}"
+                                                               FontSize="10"
+                                                               Foreground="#FF575757" />
+                                                        <Label Content="{Binding Value}"
+                                                               FontSize="10"
+                                                               Foreground="#FF575757" />
+                                                    </UniformGrid>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
+                                            <Button x:Name="AddCloakingRule"
+                                                        cal:Message.Attach="AddCloakingRule"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="Plus"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_cloaking_add}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="RemoveCloakingRule"
+                                                        cal:Message.Attach="RemoveCloakingRule"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="Minus"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_cloaking_remove}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ImportCloakingRules"
+                                                        cal:Message.Attach="ImportCloakingRules"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="FileImport"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_cloaking_import}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ExportCloakingRules"
+                                                        cal:Message.Attach="ExportCloakingRules"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="FileExport"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_cloaking_export}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                    <iconPacks:PackIconMaterial Grid.Column="0" Grid.Row="4" Height="20" Margin="0,7,0,0"
+                                                                    Width="20" Kind="Radar"
+                                                                    Opacity="0.7"
+                                                                    Foreground="#FF8ab329"
+                                                                    HorizontalAlignment="Left"
+                                                                    VerticalAlignment="Center" />
+                                    <TextBlock Grid.Column="1" Grid.Row="4" Margin="5,7,0,0"
+                                                   Text="{lex:Loc Key=forwarding}"
+                                                   TextWrapping="Wrap" VerticalAlignment="Center"
+                                                   Foreground="#FF8ab329" FontSize="20"
+                                                   Opacity="0.7" FontWeight="Bold">
+                                    </TextBlock>
+                                    <controls:ToggleSwitchButton HorizontalAlignment="Right" Margin="0,7,5,0"
+                                                                     Cursor="Hand"
+                                                                     IsChecked="{Binding IsForwardingEnabled}"
+                                                                     Grid.Column="1" Grid.Row="4" />
+                                    <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label MinWidth="120" Grid.Column="0" VerticalContentAlignment="Center"
+                                                   Foreground="#FF575757" Content="{lex:Loc Key=forwarding_path}"
+                                                   Height="30" VerticalAlignment="Top" />
+                                        <TextBox Grid.Column="1" Text="{Binding ForwardingRulesFile}"
+                                                     Background="#FF8ab329"
+                                                     Opacity="0.4" BorderBrush="#FF575757"
+                                                     MinWidth="560" IsReadOnly="True"
+                                                     VerticalContentAlignment="Center"
+                                                     Margin="0,0,0,0" />
+                                        <Button Grid.Column="2" x:Name="ChangeForwardingRulesFile"
+                                                    cal:Message.Attach="ChangeForwardingRulesFile"
+                                                    Background="White"
+                                                    IsEnabled="{Binding IsForwardingEnabled, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                    Width="30"
+                                                    Height="30"
+                                                    Cursor="Hand"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    BorderBrush="{DynamicResource AccentColorBrush}"
+                                                    FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                    Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                    Margin="15,0,0,0">
+                                            <iconPacks:PackIconMaterial
+                                                    Kind="DotsHorizontal"
+                                                    Width="15"
+                                                    Height="15"
+                                                    HorizontalContentAlignment="Center"
+                                                    VerticalContentAlignment="Center"
+                                                    Foreground="{DynamicResource AccentColorBrush}" />
+                                            <Button.ToolTip>
+                                                <Label
+                                                        Content="{lex:Loc Key=button_select_path}"
+                                                        FontWeight="DemiBold" />
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
+                                                Grid.Row="6">
+                                        <Label Foreground="#FF575757"
+                                               FontSize="16" FontWeight="Bold"
+                                               Content="{lex:Loc Key=forwarding_rules_header}"
+                                               VerticalAlignment="Center" />
+                                        <Label Foreground="#FF575757"
+                                               FontSize="12"
+                                               Content="{lex:Loc Key=forwarding_rules_sub_header}"
+                                               Margin="0,2,0,0"
+                                               VerticalAlignment="Center" />
+                                    </StackPanel>
+                                    <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ListView BorderBrush="#198AB328" Grid.Column="0"
+                                                      IsEnabled="{Binding IsWorking, Converter={StaticResource ReverseBoolToEnabledConverter}}"
+                                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                                      ScrollViewer.CanContentScroll="True"
+                                                      MinHeight="180" MinWidth="680"
+                                                      SelectedItem="{Binding Path=SelectedForwardingEntry}"
+                                                      ItemsSource="{Binding Path=ForwardingRules}">
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <UniformGrid Columns="2">
+                                                        <Label Content="{Binding Key}"
+                                                               FontSize="10"
+                                                               Foreground="#FF575757" />
+                                                        <Label Content="{Binding Value}"
+                                                               FontSize="10"
+                                                               Foreground="#FF575757" />
+                                                    </UniformGrid>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
+                                            <Button x:Name="AddForwardingRule"
+                                                        cal:Message.Attach="AddForwardingRule"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="Plus"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_forwarding_add}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="RemoveForwardingRule"
+                                                        cal:Message.Attach="RemoveForwardingRule"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="Minus"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_forwarding_remove}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ImportForwardingRules"
+                                                        cal:Message.Attach="ImportForwardingRules"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="FileImport"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_forwarding_import}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ExportForwardingRules"
+                                                        cal:Message.Attach="ExportForwardingRules"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="FileExport"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label
+                                                            Content="{lex:Loc Key=button_forwarding_export}"
+                                                            FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                        </DockPanel>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="domainBlockLogTab"
                              Visibility="{Binding SettingsViewModel.IsDomainBlockLogTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                              Header="{lex:Loc Key=tabitem_domainblocklog}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
                                         DataContext="{Binding DomainBlockLogViewModel}" DockPanel.Dock="Top">
@@ -1280,12 +1767,14 @@
                                     </Grid>
                                 </Border>
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="addressBlockLogTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="addressBlockLogTab"
                              Visibility="{Binding SettingsViewModel.IsAddressBlockLogTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                              Header="{lex:Loc Key=tabitem_addressblocklog}">
-                        <TabItem.Content>
+                    <TabItem.Content>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <DockPanel Margin="0,10,0,0">
                                 <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
                                         DataContext="{Binding AddressBlockLogViewModel}" DockPanel.Dock="Top">
@@ -1311,81 +1800,82 @@
                                     </StackPanel>
                                 </Border>
                             </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="domainBlacklistTab"
+                        </ScrollViewer>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="domainBlacklistTab"
                              Visibility="{Binding SettingsViewModel.IsDomainBlacklistTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                              Header="{lex:Loc Key=tabitem_domainblacklist}">
-                        <TabItem.Content>
-                            <DockPanel Margin="0,10,0,0">
-                                <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
+                    <TabItem.Content>
+                        <DockPanel Margin="0,10,0,0">
+                            <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
                                         DataContext="{Binding DomainBlacklistViewModel}" DockPanel.Dock="Top">
-                                    <Border.BorderBrush>
-                                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
+                                <Border.BorderBrush>
+                                    <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
                                                       Opacity="0.4">
-                                            <DrawingBrush.Drawing>
-                                                <DrawingGroup>
-                                                    <GeometryDrawing Brush="#FF8ab329">
-                                                        <GeometryDrawing.Geometry>
-                                                            <GeometryGroup>
-                                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                                <RectangleGeometry Rect="50,50,50,50" />
-                                                            </GeometryGroup>
-                                                        </GeometryDrawing.Geometry>
-                                                    </GeometryDrawing>
-                                                </DrawingGroup>
-                                            </DrawingBrush.Drawing>
-                                        </DrawingBrush>
-                                    </Border.BorderBrush>
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <GeometryDrawing Brush="#FF8ab329">
+                                                    <GeometryDrawing.Geometry>
+                                                        <GeometryGroup>
+                                                            <RectangleGeometry Rect="0,0,50,50" />
+                                                            <RectangleGeometry Rect="50,50,50,50" />
+                                                        </GeometryGroup>
+                                                    </GeometryDrawing.Geometry>
+                                                </GeometryDrawing>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Border.BorderBrush>
 
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <iconPacks:PackIconMaterial Grid.Column="0" Grid.Row="0" Height="20"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <iconPacks:PackIconMaterial Grid.Column="0" Grid.Row="0" Height="20"
                                                                     Width="20" Kind="BlockHelper"
                                                                     Opacity="0.7"
                                                                     Foreground="#FF8ab329"
                                                                     HorizontalAlignment="Left"
                                                                     VerticalAlignment="Center" />
-                                        <TextBlock Grid.Column="1" Grid.Row="0"
+                                    <TextBlock Grid.Column="1" Grid.Row="0"
                                                    Text="{lex:Loc Key=blacklist_header}"
                                                    TextWrapping="Wrap" VerticalAlignment="Center"
                                                    Foreground="#FF8ab329" FontSize="20"
                                                    Opacity="0.7" Margin="5,0,0,0" FontWeight="Bold">
-                                        </TextBlock>
-                                        <controls:ToggleSwitchButton HorizontalAlignment="Right" Margin="0,0,5,0"
+                                    </TextBlock>
+                                    <controls:ToggleSwitchButton HorizontalAlignment="Right" Margin="0,0,5,0"
                                                                      Cursor="Hand"
                                                                      IsChecked="{Binding IsBlacklistEnabled}"
                                                                      Grid.Column="1" Grid.Row="0" />
-                                        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                    <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,10,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <Label MinWidth="120" Grid.Column="0" VerticalContentAlignment="Center"
+                                        <Label MinWidth="120" Grid.Column="0" VerticalContentAlignment="Center"
                                                    Foreground="#FF575757" Content="{lex:Loc Key=blacklist_path}"
                                                    Height="30" VerticalAlignment="Top" />
-                                            <TextBox Grid.Column="1" Text="{Binding DomainBlacklistFile}"
+                                        <TextBox Grid.Column="1" Text="{Binding DomainBlacklistFile}"
                                                      Background="#FF8ab329"
                                                      Opacity="0.4" BorderBrush="#FF575757"
                                                      MinWidth="560" IsReadOnly="True"
                                                      VerticalContentAlignment="Center"
                                                      Margin="0,0,0,0" />
-                                            <Button Grid.Column="2" x:Name="ChangeBlacklistFilePath"
+                                        <Button Grid.Column="2" x:Name="ChangeBlacklistFilePath"
                                                     cal:Message.Attach="ChangeBlacklistFilePath"
                                                     Background="White"
                                                     IsEnabled="{Binding IsBlacklistEnabled, Converter={StaticResource ReverseBoolToEnabledConverter}}"
@@ -1398,56 +1888,56 @@
                                                     FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                     Margin="15,0,0,0">
-                                                <iconPacks:PackIconMaterial
+                                            <iconPacks:PackIconMaterial
                                                     Kind="DotsHorizontal"
                                                     Width="15"
                                                     Height="15"
                                                     HorizontalContentAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Foreground="{DynamicResource AccentColorBrush}" />
-                                                <Button.ToolTip>
-                                                    <Label
+                                            <Button.ToolTip>
+                                                <Label
                                                         Content="{lex:Loc Key=button_select_path}"
                                                         FontWeight="DemiBold" />
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </Grid>
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
 
-                                        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
+                                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
                                                     Grid.Row="2">
-                                            <Label Foreground="#FF575757"
+                                        <Label Foreground="#FF575757"
                                                    FontSize="16" FontWeight="Bold"
                                                    Content="{lex:Loc Key=whitelist_rules_header}"
                                                    VerticalAlignment="Center" />
-                                            <Label Foreground="#FF575757"
+                                        <Label Foreground="#FF575757"
                                                    FontSize="12"
                                                    Content="{lex:Loc Key=whitelist_rules_sub_header}"
                                                    Margin="0,2,0,0"
                                                    VerticalAlignment="Center" />
-                                        </StackPanel>
+                                    </StackPanel>
 
-                                        <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <ListView BorderBrush="#198AB328" Grid.Column="0"
+                                    <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ListView BorderBrush="#198AB328" Grid.Column="0"
                                                       IsEnabled="{Binding IsWorking, Converter={StaticResource ReverseBoolToEnabledConverter}}"
                                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                                       ScrollViewer.CanContentScroll="True"
                                                       MinHeight="180" MinWidth="680"
                                                       SelectedItem="{Binding Path=SelectedDomainWhitelistEntry}"
                                                       ItemsSource="{Binding Path=DomainWhitelistRules}">
-                                                <ListView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Label Content="{Binding}"
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding}"
                                                                FontSize="10"
                                                                Foreground="#FF575757" />
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
-                                            <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
-                                                <Button x:Name="AddWhitelistRule"
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
+                                            <Button x:Name="AddWhitelistRule"
                                                         cal:Message.Attach="AddWhitelistRule"
                                                         Background="White"
                                                         Width="30"
@@ -1458,20 +1948,20 @@
                                                         BorderBrush="{DynamicResource AccentColorBrush}"
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="Plus"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_whitelist_add}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="RemoveWhitelistRule"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="RemoveWhitelistRule"
                                                         cal:Message.Attach="RemoveWhitelistRule"
                                                         Background="White"
                                                         Width="30"
@@ -1483,20 +1973,20 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="Minus"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_whitelist_remove}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="ImportWhitelistRules"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ImportWhitelistRules"
                                                         cal:Message.Attach="ImportWhitelistRules"
                                                         Background="White"
                                                         Width="30"
@@ -1508,20 +1998,20 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="FileImport"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_whitelist_import}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="ExportWhitelistRules"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ExportWhitelistRules"
                                                         cal:Message.Attach="ExportWhitelistRules"
                                                         Background="White"
                                                         Width="30"
@@ -1533,37 +2023,37 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="FileExport"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_whitelist_export}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
 
-                                        <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <Label MinWidth="120" VerticalContentAlignment="Center"
+                                    <Grid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label MinWidth="120" VerticalContentAlignment="Center"
                                                    Foreground="#FF575757" Grid.Column="0"
                                                    Content="{lex:Loc Key=whitelist_rules_path}" />
-                                            <TextBox Text="{Binding DomainWhitelistRuleFilePath}"
+                                        <TextBox Text="{Binding DomainWhitelistRuleFilePath}"
                                                      Background="#FF8ab329" Opacity="0.4" BorderBrush="#FF575757"
                                                      MinWidth="560" IsReadOnly="True" Grid.Column="1"
                                                      VerticalContentAlignment="Center"
                                                      Margin="0,0,0,0" />
-                                            <Button x:Name="ChangeWhitelistRulesFilePath" Grid.Column="2"
+                                        <Button x:Name="ChangeWhitelistRulesFilePath" Grid.Column="2"
                                                     cal:Message.Attach="ChangeWhitelistRulesFilePath"
                                                     Background="White"
                                                     Width="30"
@@ -1575,59 +2065,59 @@
                                                     FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                     Margin="15,0,0,0">
-                                                <iconPacks:PackIconMaterial
+                                            <iconPacks:PackIconMaterial
                                                     Kind="DotsHorizontal"
                                                     Width="15"
                                                     Height="15"
                                                     HorizontalContentAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Foreground="{DynamicResource AccentColorBrush}" />
-                                                <Button.ToolTip>
-                                                    <Label
+                                            <Button.ToolTip>
+                                                <Label
                                                         Content="{lex:Loc Key=button_select_path}"
                                                         FontWeight="DemiBold" />
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </Grid>
-                                        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
+                                            </Button.ToolTip>
+                                        </Button>
+                                    </Grid>
+                                    <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="0"
                                                     Grid.Row="5">
-                                            <Label Foreground="#FF575757"
+                                        <Label Foreground="#FF575757"
                                                    FontSize="16" FontWeight="Bold"
                                                    Content="{lex:Loc Key=blacklist_rules_header}"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Left">
-                                            </Label>
-                                            <Label Foreground="#FF575757"
+                                        </Label>
+                                        <Label Foreground="#FF575757"
                                                    FontSize="12"
                                                    Content="{lex:Loc Key=blacklist_rules_sub_header}"
                                                    Margin="0,2,0,0"
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Left">
-                                            </Label>
-                                        </StackPanel>
+                                        </Label>
+                                    </StackPanel>
 
-                                        <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <ListView BorderBrush="#198AB328" Grid.Column="0"
+                                    <Grid Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <ListView BorderBrush="#198AB328" Grid.Column="0"
                                                       IsEnabled="{Binding IsWorking, Converter={StaticResource ReverseBoolToEnabledConverter}}"
                                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                                       ScrollViewer.CanContentScroll="True"
                                                       MinHeight="180" MinWidth="680"
                                                       SelectedItem="{Binding Path=SelectedDomainBlacklistEntry}"
                                                       ItemsSource="{Binding Path=DomainBlacklistRules}">
-                                                <ListView.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <Label Content="{Binding}"
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Label Content="{Binding}"
                                                                FontSize="10"
                                                                Foreground="#FF575757" />
-                                                    </DataTemplate>
-                                                </ListView.ItemTemplate>
-                                            </ListView>
-                                            <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
-                                                <Button x:Name="AddBlacklistRule"
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                        <StackPanel Orientation="Vertical" Margin="15,0,0,0" Grid.Column="1">
+                                            <Button x:Name="AddBlacklistRule"
                                                         cal:Message.Attach="AddBlacklistRule"
                                                         Background="White"
                                                         Width="30"
@@ -1638,20 +2128,20 @@
                                                         BorderBrush="{DynamicResource AccentColorBrush}"
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="Plus"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_blacklist_add}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="RemoveBlacklistRule"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="RemoveBlacklistRule"
                                                         cal:Message.Attach="RemoveBlacklistRule"
                                                         Background="White"
                                                         Width="30"
@@ -1663,20 +2153,20 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="Minus"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_blacklist_remove}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="ImportBlacklistRules"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ImportBlacklistRules"
                                                         cal:Message.Attach="ImportBlacklistRules"
                                                         Background="White"
                                                         Width="30"
@@ -1688,20 +2178,20 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="FileImport"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_blacklist_import}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="ExportBlacklistRules"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ExportBlacklistRules"
                                                         cal:Message.Attach="ExportBlacklistRules"
                                                         Background="White"
                                                         Width="30"
@@ -1713,20 +2203,20 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="FileExport"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_blacklist_export}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                                <Button x:Name="BuildBlacklist" cal:Message.Attach="BuildBlacklist"
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="BuildBlacklist" cal:Message.Attach="BuildBlacklist"
                                                         Background="White"
                                                         Width="30"
                                                         Height="30"
@@ -1737,37 +2227,60 @@
                                                         FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                         Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                         Margin="0,7,0,0">
-                                                    <iconPacks:PackIconMaterial
+                                                <iconPacks:PackIconMaterial
                                                         Kind="Creation"
                                                         Width="15"
                                                         Height="15"
                                                         HorizontalContentAlignment="Center"
                                                         VerticalContentAlignment="Center"
                                                         Foreground="{DynamicResource AccentColorBrush}" />
-                                                    <Button.ToolTip>
-                                                        <Label
+                                                <Button.ToolTip>
+                                                    <Label
                                                             Content="{lex:Loc Key=button_blacklist_build}"
                                                             FontWeight="DemiBold" />
-                                                    </Button.ToolTip>
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Button x:Name="ClearDomainBlackList" cal:Message.Attach="ClearDomainBlackList"
+                                                        Background="White"
+                                                        Width="30"
+                                                        Height="30"
+                                                        Cursor="Hand"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        BorderBrush="{DynamicResource AccentColorBrush}"
+                                                        FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
+                                                        Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                                                        Margin="0,7,0,0">
+                                                <iconPacks:PackIconMaterial
+                                                        Kind="NotificationClearAll"
+                                                        Width="15"
+                                                        Height="15"
+                                                        HorizontalContentAlignment="Center"
+                                                        VerticalContentAlignment="Center"
+                                                        Foreground="{DynamicResource AccentColorBrush}" />
+                                                <Button.ToolTip>
+                                                    <Label Content="{lex:Loc Key=button_blacklist_clear}"
+                                                               FontWeight="DemiBold" />
+                                                </Button.ToolTip>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
 
-                                        <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,5,0,0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-                                            <Label MinWidth="120" VerticalContentAlignment="Center"
+                                    <Grid Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="0,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label MinWidth="120" VerticalContentAlignment="Center"
                                                    Foreground="#FF575757" Grid.Column="0"
                                                    Content="{lex:Loc Key=blacklist_rules_path}" />
-                                            <TextBox Text="{Binding DomainBlacklistRuleFilePath}"
+                                        <TextBox Text="{Binding DomainBlacklistRuleFilePath}"
                                                      Background="#FF8ab329" Opacity="0.4" BorderBrush="#FF575757"
                                                      MinWidth="560" IsReadOnly="True" Grid.Column="1"
                                                      VerticalContentAlignment="Center"
                                                      Margin="0,0,0,0" />
-                                            <Button x:Name="ChangeBlacklistRulesFilePath"
+                                        <Button x:Name="ChangeBlacklistRulesFilePath"
                                                     cal:Message.Attach="ChangeBlacklistRulesFilePath"
                                                     Background="White" Grid.Column="2"
                                                     Width="30"
@@ -1779,59 +2292,58 @@
                                                     FocusVisualStyle="{DynamicResource MahApps.Metro.Styles.MetroCircleFocusVisual}"
                                                     Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
                                                     Margin="15,0,0,0">
-                                                <iconPacks:PackIconMaterial
+                                            <iconPacks:PackIconMaterial
                                                     Kind="DotsHorizontal"
                                                     Width="15"
                                                     Height="15"
                                                     HorizontalContentAlignment="Center"
                                                     VerticalContentAlignment="Center"
                                                     Foreground="{DynamicResource AccentColorBrush}" />
-                                                <Button.ToolTip>
-                                                    <Label
+                                            <Button.ToolTip>
+                                                <Label
                                                         Content="{lex:Loc Key=button_select_path}"
                                                         FontWeight="DemiBold" />
-                                                </Button.ToolTip>
-                                            </Button>
-                                        </Grid>
+                                            </Button.ToolTip>
+                                        </Button>
                                     </Grid>
+                                </Grid>
 
-                                </Border>
-                            </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                    <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="addressBlacklistTab"
+                            </Border>
+                        </DockPanel>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Padding="10,2,10,2" Height="39" VerticalAlignment="Top" Tag="addressBlacklistTab"
                              Visibility="{Binding SettingsViewModel.IsAddressBlacklistTabVisible, Converter={StaticResource BoolToVisibilityCollapsedConverter}}"
                              Header="{lex:Loc Key=tabitem_addressblacklist}">
-                        <TabItem.Content>
-                            <DockPanel Margin="0,10,0,0">
-                                <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
+                    <TabItem.Content>
+                        <DockPanel Margin="0,10,0,0">
+                            <Border BorderThickness="1" Background="#198AB328" Padding="10" Margin="0,10,0,0"
                                         DataContext="{Binding AddressBlacklistViewModel}" DockPanel.Dock="Top">
-                                    <Border.BorderBrush>
-                                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
+                                <Border.BorderBrush>
+                                    <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile"
                                                       Opacity="0.4">
-                                            <DrawingBrush.Drawing>
-                                                <DrawingGroup>
-                                                    <GeometryDrawing Brush="#FF8ab329">
-                                                        <GeometryDrawing.Geometry>
-                                                            <GeometryGroup>
-                                                                <RectangleGeometry Rect="0,0,50,50" />
-                                                                <RectangleGeometry Rect="50,50,50,50" />
-                                                            </GeometryGroup>
-                                                        </GeometryDrawing.Geometry>
-                                                    </GeometryDrawing>
-                                                </DrawingGroup>
-                                            </DrawingBrush.Drawing>
-                                        </DrawingBrush>
-                                    </Border.BorderBrush>
-                                    <StackPanel>
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <GeometryDrawing Brush="#FF8ab329">
+                                                    <GeometryDrawing.Geometry>
+                                                        <GeometryGroup>
+                                                            <RectangleGeometry Rect="0,0,50,50" />
+                                                            <RectangleGeometry Rect="50,50,50,50" />
+                                                        </GeometryGroup>
+                                                    </GeometryDrawing.Geometry>
+                                                </GeometryDrawing>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Border.BorderBrush>
+                                <StackPanel>
 
-                                    </StackPanel>
-                                </Border>
-                            </DockPanel>
-                        </TabItem.Content>
-                    </TabItem>
-                </TabControl>
-            </Border>
-        </Grid>
-    </ScrollViewer>
+                                </StackPanel>
+                            </Border>
+                        </DockPanel>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl>
+        </Border>
+    </Grid>
 </UserControl>

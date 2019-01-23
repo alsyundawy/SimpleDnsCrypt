@@ -59,13 +59,19 @@ namespace SimpleDnsCrypt.ViewModels
 				}
 				else
 				{
-					ProgressText = LocalizationEx.GetUiString("loader_redistributable_package_installing", Thread.CurrentThread.CurrentCulture);
-					//minisign needs this (to verify the installer with libsodium)
-					await PrerequisiteHelper.DownloadAndInstallRedistributablePackage();
-					if (PrerequisiteHelper.IsRedistributablePackageInstalled())
+					//Note: if this is disabled, the auto update may not work
+					if (Properties.Settings.Default.InstallRedistributablePackage)
 					{
-						ProgressText = LocalizationEx.GetUiString("loader_redistributable_package_ready", Thread.CurrentThread.CurrentCulture);
-						await Task.Delay(1000).ConfigureAwait(false);
+						ProgressText = LocalizationEx.GetUiString("loader_redistributable_package_installing",
+							Thread.CurrentThread.CurrentCulture);
+						//minisign needs this (to verify the installer with libsodium)
+						await PrerequisiteHelper.DownloadAndInstallRedistributablePackage();
+						if (PrerequisiteHelper.IsRedistributablePackageInstalled())
+						{
+							ProgressText = LocalizationEx.GetUiString("loader_redistributable_package_ready",
+								Thread.CurrentThread.CurrentCulture);
+							await Task.Delay(1000).ConfigureAwait(false);
+						}
 					}
 				}
 
@@ -88,14 +94,14 @@ namespace SimpleDnsCrypt.ViewModels
 						{
 							ProgressText = LocalizationEx.GetUiString("loader_starting_update", Thread.CurrentThread.CurrentCulture);
 							await Task.Delay(200).ConfigureAwait(false);
-							if (Properties.Settings.Default.AutoUpdate)
+							if (Properties.Settings.Default.AutoUpdateSilent)
 							{
 								// auto install
 								const string arguments = "/qb /passive /norestart";
 								var startInfo = new ProcessStartInfo(installer)
 								{
 									Arguments = arguments,
-									UseShellExecute = false
+									UseShellExecute = true
 								};
 								Process.Start(startInfo);
 							}
@@ -145,6 +151,26 @@ namespace SimpleDnsCrypt.ViewModels
 					Process.GetCurrentProcess().Kill();
 				}
 
+				if (Properties.Settings.Default.BackupAndRestoreConfigOnUpdate)
+				{
+					var tmpConfigPath = Path.Combine(Path.GetTempPath(), Global.DnsCryptConfigurationFile + ".bak");
+					if (File.Exists(tmpConfigPath))
+					{
+						ProgressText = string.Format(LocalizationEx.GetUiString("loader_restore_config", Thread.CurrentThread.CurrentCulture),
+							Global.DnsCryptConfigurationFile);
+						var configFile = Path.Combine(Directory.GetCurrentDirectory(), Global.DnsCryptProxyFolder, Global.DnsCryptConfigurationFile);
+						if (File.Exists(configFile))
+						{
+							if (File.Exists(configFile + ".bak"))
+							{
+								File.Delete(configFile + ".bak");
+							}
+							File.Move(configFile, configFile + ".bak");
+						}
+						File.Move(tmpConfigPath, configFile);
+					}
+				}
+
 				ProgressText = string.Format(LocalizationEx.GetUiString("loader_loading", Thread.CurrentThread.CurrentCulture),
 					Global.DnsCryptConfigurationFile);
 				if (DnscryptProxyConfigurationManager.LoadConfiguration())
@@ -185,10 +211,17 @@ namespace SimpleDnsCrypt.ViewModels
 				_mainViewModel.Initialize();
 				ProgressText = LocalizationEx.GetUiString("loader_starting", Thread.CurrentThread.CurrentCulture);
 
-				if (Properties.Settings.Default.TrayMode)
+				if(Properties.Settings.Default.TrayMode)
 				{
 					Execute.OnUIThread(() => _windowManager.ShowWindow(_systemTrayViewModel));
-					Execute.OnUIThread(() => _systemTrayViewModel.ShowWindow());
+					if (Properties.Settings.Default.StartInTray)
+					{
+						Execute.OnUIThread(() => _systemTrayViewModel.HideWindow());
+					}
+					else
+					{
+						Execute.OnUIThread(() => _windowManager.ShowWindow(_mainViewModel));
+					}
 				}
 				else
 				{

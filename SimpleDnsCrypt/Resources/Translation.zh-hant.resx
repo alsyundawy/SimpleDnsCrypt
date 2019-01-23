@@ -154,7 +154,7 @@
     <value>只顯示不保留日誌的伺服器</value>
   </data>
   <data name="default_settings_configuration_nolog_tooltip" xml:space="preserve">
-    <value>伺服器必須不記錄用戶請求</value>
+    <value>伺服器必須不保留用戶請求記錄</value>
   </data>
   <data name="default_settings_configuration_nofilter" xml:space="preserve">
     <value>只顯示不進行內容過慮的伺服器</value>
@@ -223,7 +223,7 @@
 嘗試使用 {2} 的全新安裝</value>
   </data>
   <data name="loader_all_files_available" xml:space="preserve">
-    <value>全部必要檔案都已具備</value>
+    <value>已具備全部必要檔案</value>
   </data>
   <data name="about" xml:space="preserve">
     <value>關於</value>
@@ -530,5 +530,137 @@
   </data>
   <data name="address_settings_restore" xml:space="preserve">
     <value>重設監聽位址</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>清除所有黑名單規則</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>關閉時最小化到托盤</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>在托盤中啟動 Simple DNSCrypt</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>靜默安裝新版本</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>代理</value>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>管理代理</value>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>HTTP / HTTPS代理</value>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>僅適用於DoH服務器</value>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>SOCKS代理</value>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>您可以將所有TCP連接路由到本地Tor節點。 Tor不支持UDP，因此您也應啟用強制TCP（高級設置）。</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Netprobe超時</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>初始化代理之前等待網絡連接的最長時間（以秒為單位）。如果代理在引導時自動啟動，並且無法保證網絡連接立即可用，則非常有用。使用0禁用。</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>使用實現DNSCrypt協議的服務器</value>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS-over-HTTPS</value>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>使用實現DNS-over-HTTPS協議的服務器</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>恢復{0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>在更新時備份和恢復dnscrypt配置</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>屏蔽和轉發</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>屏蔽中</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>屏蔽規則：</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>屏蔽規則</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>（啟用中的屏蔽規則）</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>添加新的屏蔽規則</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>刪除選定的屏蔽規則</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>導入現有的屏蔽規則</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>導出屏蔽規則</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>添加新的屏蔽規則</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>規則來源（例如：www.google.*）</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>規則目標（例如：forcesafesearch.google.com）</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>轉發</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>轉發規則：</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>轉發規則</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>（啟用中的轉發規則）</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>添加新的轉發規則</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>刪除選定的轉發規則</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>導入現有轉發規則</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>導出轉發規則</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>添加新的轉發規則</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>規則來源（例如：example.com）</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>規則目標（例如：9.9.9.9,8.8.8.8）</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>加</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>顯示「屏蔽和轉發」標籤</value>
   </data>
 </root>

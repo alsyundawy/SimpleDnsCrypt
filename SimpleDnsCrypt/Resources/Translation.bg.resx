@@ -346,7 +346,7 @@
     <value>DNSCrypt режим</value>
   </data>
   <data name="resolvers_dnscrypt_mode_description" xml:space="preserve">
-    <value>При автоматичен режим се използват всички налични сървъри. dnscrypt-proxy избира автоматично най-бързите.</value>
+    <value>При автоматичен режим се използват всички налични сървъри. dnscrypt-proxy автоматично избира най-бързите.</value>
   </data>
   <data name="resolvers_dnscrypt_automatic_mode" xml:space="preserve">
     <value>Автоматичен режим</value>
@@ -519,21 +519,153 @@
     <value>Изход</value>
   </data>
   <data name="address_settings_listen_addresses" xml:space="preserve">
-    <value>Listen Addresses</value>
+    <value>Адреси за слушане</value>
   </data>
   <data name="address_settings_manage_listen_addresses" xml:space="preserve">
-    <value>Manage Listen Addresses</value>
+    <value>Управление</value>
   </data>
   <data name="address_settings_description" xml:space="preserve">
-    <value>List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.</value>
+    <value>Списък с локални адреси и портове, които да се използват от dnscrypt-proxy. Могат да бъдат IPv4 и/или IPv6.</value>
   </data>
   <data name="address_settings_add" xml:space="preserve">
-    <value>Add new listen address</value>
+    <value>Добавяне на нов адрес</value>
   </data>
   <data name="address_settings_remove" xml:space="preserve">
-    <value>Remove selected listen address</value>
+    <value>Премахване на избрания адрес</value>
   </data>
   <data name="address_settings_restore" xml:space="preserve">
-    <value>Restore default listen addresses</value>
+    <value>Възстановяване на стандартните адреси</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>Изчистване на всички правила за блокиране</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>Намаляване в системната област при затваряне</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>Стартиране на Simple DNSCrypt в системната област</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>Тихо инсталиране на нови версии</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>Прокси</value>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>Управление на прокси</value>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>HTTP/HTTPS прокси</value>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>Само за DoH сървъри</value>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>SOCKS прокси</value>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>Можете да маршрутизирате всички TCP връзки към локален Tor възел. Tor не поддържа UDP, така че, трябва да включите &quot;Налагане на TCP&quot; в раздел &quot;Разширени&quot; настройки.</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Изчакване за проверка на мрежа</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>Максимално време (в секунди) за изчакване на мрежова връзка преди инициализиране на прокси сървъра. Полезно е, ако прокси сървърът се стартира автоматично при зареждане, а мрежовата свързаност не е налична веднага. Използвайте 0 за деактивиране.</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>Използване на сървъри изпълняващи DNSCrypt протокола</value>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS-през-HTTPS</value>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>Използване на сървъри изпълняващи DNS-през-HTTPS протокола</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>Възстановяване {0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>Архивиране и възстановяване на настройките при обновяване</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>Маскиране</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>Маскиране</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>Правила за маскиране:</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>Правила за маскиране</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>(активни правила)</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>Добавяне на ново правило</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>Премахване на избраните правила</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>Внасяне на правила</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>Изнасяне на правила</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>Добавяне на ново правило</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>Източник (напр.: www.google.*)</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>Цел (напр.: forcesafesearch.google.com)</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>Пренасочване</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>Правила за пренасочване:</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>Правила за пренасочване</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>(активни правила)</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>Добавяне на ново правило</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>Премахване на избраните правила</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>Внасяне на правила</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>Изнасяне на правилата</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>Добавяне на ново правило</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>Източник (напр.: example.com)</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>Цел (напр.: 9.9.9.9,8.8.8.8)</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>Добавяне</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>Прекратяване</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>Раздел &quot;Маскиране&quot;</value>
   </data>
 </root>

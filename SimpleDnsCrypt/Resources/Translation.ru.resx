@@ -145,34 +145,34 @@
     <value>Использовать серверы, доступные по IPv6 (не включайте, если у вас нет IPv6)</value>
   </data>
   <data name="default_settings_configuration_dnssec" xml:space="preserve">
-    <value>Только серверы с DNSSEC</value>
+    <value>Только серверы с поддержкой DNSSEC</value>
   </data>
   <data name="default_settings_configuration_dnssec_tooltip" xml:space="preserve">
-    <value>Серверы с поддержкой расширенной безопасности DNS</value>
+    <value>Серверы с безопасностью DNS</value>
   </data>
   <data name="default_settings_configuration_nolog" xml:space="preserve">
-    <value>Только серверы &quot;без логов&quot;</value>
+    <value>Только серверы без логирования</value>
   </data>
   <data name="default_settings_configuration_nolog_tooltip" xml:space="preserve">
-    <value>Серверы без регистрации запросов пользователя</value>
+    <value>Серверы не ведущие статистику</value>
   </data>
   <data name="default_settings_configuration_nofilter" xml:space="preserve">
     <value>Только серверы без фильтрации</value>
   </data>
   <data name="default_settings_configuration_nofilter_tooltip" xml:space="preserve">
-    <value>Без применения сервером собственных черных списков (родительский контроль, блокировка рекламы...)</value>
+    <value>Серверы не применяющие свой черный список (родительский контроль, блокировка рекламы...)</value>
   </data>
   <data name="tabitem_mainmenu" xml:space="preserve">
-    <value>Меню</value>
+    <value>Главное</value>
   </data>
   <data name="loader_administrative_rights_available" xml:space="preserve">
     <value>Административные права доступны</value>
   </data>
   <data name="loader_administrative_rights_missing" xml:space="preserve">
-    <value>Административные права отсутствуют!</value>
+    <value>Административных прав нет</value>
   </data>
   <data name="loader_checking_version" xml:space="preserve">
-    <value>Проверка обновлений . . .</value>
+    <value>Проверка новой версии...</value>
   </data>
   <data name="loader_new_version_found" xml:space="preserve">
     <value>Обнаружена новая версия: {0}</value>
@@ -235,10 +235,10 @@
     <value>Посмотреть на GitHub</value>
   </data>
   <data name="tabitem_querylog" xml:space="preserve">
-    <value>Журнал запросов</value>
+    <value>Лог запросов</value>
   </data>
   <data name="querylog" xml:space="preserve">
-    <value>Журнал запросов</value>
+    <value>Лог запросов</value>
   </data>
   <data name="querylog_waiting_for_data" xml:space="preserve">
     <value>ожидание запросов DNS</value>
@@ -256,7 +256,7 @@
     <value>Блокировать выбранные</value>
   </data>
   <data name="domainblocklog" xml:space="preserve">
-    <value>Журнал блокировки доменов</value>
+    <value>Лог блокировки доменов</value>
   </data>
   <data name="domainblocklog_waiting_for_data" xml:space="preserve">
     <value>ожидание блокируемых запросов DNS</value>
@@ -271,10 +271,10 @@
     <value>Очистить список</value>
   </data>
   <data name="tabitem_domainblocklog" xml:space="preserve">
-    <value>Журнал блокировки доменов</value>
+    <value>Лог блокировки доменов</value>
   </data>
   <data name="tabitem_addressblocklog" xml:space="preserve">
-    <value>Журнал блокировки адресов</value>
+    <value>Лог блокировки адресов</value>
   </data>
   <data name="tabitem_domainblacklist" xml:space="preserve">
     <value>Черный список доменов</value>
@@ -292,22 +292,22 @@
     <value>Вкладка &quot;Черный список адресов&quot;</value>
   </data>
   <data name="settings_domain_block" xml:space="preserve">
-    <value>Вкладка &quot;Журнал блокировки доменов&quot;</value>
+    <value>Вкладка &quot;Лог блокировки доменов&quot;</value>
   </data>
   <data name="settings_address_block" xml:space="preserve">
-    <value>Вкладка &quot;Журнал блокировки адресов&quot;</value>
+    <value>Вкладка &quot;Лог блокировки адресов&quot;</value>
   </data>
   <data name="settings_query_log" xml:space="preserve">
-    <value>Вкладка &quot;Журнал запросов&quot;</value>
+    <value>Вкладка &quot;Лог запросов&quot;</value>
   </data>
   <data name="tabitem_resolvers" xml:space="preserve">
     <value>Резольверы</value>
   </data>
   <data name="tabitem_advanced_settings" xml:space="preserve">
-    <value>Расширенные настройки</value>
+    <value>Дополнительно</value>
   </data>
   <data name="settings_advanced_settings" xml:space="preserve">
-    <value>Показывать вкладку &quot;Расширенные настройки&quot;</value>
+    <value>Вкладка &quot;Дополнительно&quot;</value>
   </data>
   <data name="yes" xml:space="preserve">
     <value>да</value>
@@ -346,7 +346,7 @@
     <value>Режим DNSCrypt</value>
   </data>
   <data name="resolvers_dnscrypt_mode_description" xml:space="preserve">
-    <value>В автоматическом режиме используются все доступные серверы. dnscrypt-proxy автоматически выбирает самые быстрые резольверы.</value>
+    <value>В автоматическом режиме используются все доступные серверы. DNScrypt-proxy автоматически выбирает самые быстрые резольверы.</value>
   </data>
   <data name="resolvers_dnscrypt_automatic_mode" xml:space="preserve">
     <value>Автоматический режим</value>
@@ -376,7 +376,7 @@
     <value>Не выбран ни один сервер</value>
   </data>
   <data name="message_content_no_server_selected" xml:space="preserve">
-    <value>Минимум один сервер должен быть выбран. Иначе, dnscrypt-proxy использует все сервера к выбранным фильтрам.</value>
+    <value>Минимум один сервер должен быть выбран. Иначе, dnscrypt-proxy использует все серверы соответствующие фильтрам.</value>
   </data>
   <data name="message_title_service_not_running" xml:space="preserve">
     <value>Служба не запущена</value>
@@ -397,7 +397,7 @@
     <value>Невозможно выполнить удаление. Попробуйте сначала остановить службу вручную и повторить снова.</value>
   </data>
   <data name="open_log_directory" xml:space="preserve">
-    <value>Открыть директорию c журналом событий</value>
+    <value>Открыть папку c логом событий</value>
   </data>
   <data name="settings_update_auto" xml:space="preserve">
     <value>Проверять обновления при запуске</value>
@@ -436,7 +436,7 @@
     <value>Пример: *.example.com, ads.*, *sex*, также можете добавить список правил, разделенных запятыми, файл - который начинается с file:my-custom-rules.txt или удаленный URL-адрес, который начинается с http:// или https://.</value>
   </data>
   <data name="working_dialog_title" xml:space="preserve">
-    <value>Ведется тяжелая работа . . .</value>
+    <value>Списки объединяются . . .</value>
   </data>
   <data name="button_select_path" xml:space="preserve">
     <value>Выберите путь</value>
@@ -527,5 +527,138 @@
   </data>
   <data name="address_settings_restore" xml:space="preserve">
     <value>Восстановить адреса прослушивания по умолчанию</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>Очистить все правила черного списка</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>Свернуть в трей при закрытии</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>Запускать свернутым в трей</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>Автоматическая установка новых версий</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>Прокси</value>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>Управление прокси</value>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>HTTP/HTTPS прокси</value>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>Только для DoH серверов</value>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>SOCKS прокси</value>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>Можно маршрутизировать все TCP-соединения на локальный узел Tor. Tor не поддерживает UDP, поэтому надо включить &apos;Принудительно TCP&apos; на вкладке &apos;Дополнительно&apos;.</value>
+    <comment>Check what would fit into the dialogue.</comment>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Таймаут проверки сети</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>Время (в секундах) ожидания подключения к сети перед инициализацией прокси-сервера. Полезно, если прокси-сервер в автозагрузке, а сетевое подключение отложено или имеет задержку. Используйте 0 для отключения.</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>Использовать серверы, реализующие DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS по HTTPS</value>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>Использовать серверы, реализующие DNS по HTTPS</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>Восстановление {0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>Бэкап и восстановление конфигурации dnscrypt при обновлении</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>Маскировка</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>Маскировка</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>Правила маскировки:</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>Правила маскировки</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>(активные правила маскировки)</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>Добавить новое правило маскировки</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>Удалить выбранное правило маскировк</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>Импорт существующих правил маскировки</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>Экспорт правил маскировки</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>Добавить новое правило маскировки</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>Источник правила (пример: www.google.*)</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>Цель правила (пример, forceafesearch.google.com)</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>Переадресация</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>Правила переадресации:</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>Правила переадресации</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>(активные правила переадресации)</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>Добавить новое правило переадресации</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>Удалить выбранное правило переадресации</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>Импорт существующих правил переадресации</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>Экспорт правил переадресации</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>Добавить новое правило переадресации</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>Источник правила (eg: example.com)</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>Цель правила (пример, 9.9.9.9,8.8.8.8)</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>Прервать</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>Вкладка &quot;Маскировка&quot;</value>
   </data>
 </root>

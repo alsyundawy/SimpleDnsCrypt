@@ -511,21 +511,153 @@
     <value>Çıkış</value>
   </data>
   <data name="address_settings_listen_addresses" xml:space="preserve">
-    <value>Listen Addresses</value>
+    <value>Adresleri Dinle</value>
   </data>
   <data name="address_settings_manage_listen_addresses" xml:space="preserve">
-    <value>Manage Listen Addresses</value>
+    <value>Adresleri Dinlemeyi Yönet</value>
   </data>
   <data name="address_settings_description" xml:space="preserve">
-    <value>List of local addresses and ports to listen to. Can be IPv4 and/or IPv6.</value>
+    <value>Dinlenecek yerel adresler ve portların listesi. IPv4 ve / veya IPv6 olabilir.</value>
   </data>
   <data name="address_settings_add" xml:space="preserve">
-    <value>Add new listen address</value>
+    <value>Yeni dinleme adresi ekle</value>
   </data>
   <data name="address_settings_remove" xml:space="preserve">
-    <value>Remove selected listen address</value>
+    <value>Seçilen dinleme adresini kaldır</value>
   </data>
   <data name="address_settings_restore" xml:space="preserve">
-    <value>Restore default listen addresses</value>
+    <value>Varsayılan dinleme adreslerini geri yükle</value>
+  </data>
+  <data name="button_blacklist_clear" xml:space="preserve">
+    <value>Tüm kara liste kurallarını temizle</value>
+  </data>
+  <data name="settings_tray_mode" xml:space="preserve">
+    <value>Kapandığında simge durumuna küçültün</value>
+  </data>
+  <data name="settings_start_in_tray" xml:space="preserve">
+    <value>Simple DNSCrypt&apos;i simgeye küçültülmüş halde başlat</value>
+  </data>
+  <data name="settings_update_silent" xml:space="preserve">
+    <value>Yeni sürümleri sessizce yükle</value>
+  </data>
+  <data name="proxy_proxies" xml:space="preserve">
+    <value>Vekil Sunucular</value>
+  </data>
+  <data name="proxy_manage_proxies" xml:space="preserve">
+    <value>Vekil Sunucuları Yönet</value>
+  </data>
+  <data name="proxy_http_header" xml:space="preserve">
+    <value>HTTP / HTTPS vekil sunucusu</value>
+  </data>
+  <data name="proxy_http_sub" xml:space="preserve">
+    <value>Sadece DoH sunucuları için</value>
+  </data>
+  <data name="proxy_socks_header" xml:space="preserve">
+    <value>SOCKS vekil sunucusu</value>
+  </data>
+  <data name="proxy_socks_sub" xml:space="preserve">
+    <value>Tüm TCP bağlantılarını yerel bir Tor düğümüne yönlendirebilirsiniz. Tor UDP&apos;yi desteklemiyor, bu nedenle TCP&apos;yi (Gelişmiş Ayarlar) da etkinleştirmelisiniz.</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout" xml:space="preserve">
+    <value>Netprobe Zaman Aşımı</value>
+  </data>
+  <data name="advanced_settings_netprobe_timeout_content" xml:space="preserve">
+    <value>Proxy&apos;yi başlatmadan önce ağ bağlantısı için beklemek için maksimum süre (saniye cinsinden). Proxy otomatik olarak önyükleme sırasında başlatılırsa ve ağ bağlantısının hemen kullanılabilir olması garanti edilmezse kullanışlıdır. Devre dışı bırakmak için 0 kullanın.</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt" xml:space="preserve">
+    <value>DNSCrypt</value>
+  </data>
+  <data name="default_settings_configuration_dnscrypt_tooltip" xml:space="preserve">
+    <value>DNSCrypt protokolünü uygulayan sunucuları kullan</value>
+  </data>
+  <data name="default_settings_configuration_doh" xml:space="preserve">
+    <value>DNS-üzerinden-HTTPS</value>
+  </data>
+  <data name="default_settings_configuration_doh_tooltip" xml:space="preserve">
+    <value>DNS üzerinden HTTPS protokolünü uygulayan sunucuları kullan</value>
+  </data>
+  <data name="loader_restore_config" xml:space="preserve">
+    <value>Geri Yükle {0}</value>
+  </data>
+  <data name="settings_backup_and_restore_config" xml:space="preserve">
+    <value>Güncelleme sırasında yedekleme ve geri yükleme dnscrypt yapılandırması</value>
+  </data>
+  <data name="tabitem_cloakandforward" xml:space="preserve">
+    <value>Gizle ve Yönlendir</value>
+  </data>
+  <data name="cloaking" xml:space="preserve">
+    <value>Gizleme</value>
+  </data>
+  <data name="cloaking_path" xml:space="preserve">
+    <value>Gizleme Kuralları:</value>
+  </data>
+  <data name="cloaking_rules_header" xml:space="preserve">
+    <value>Gizleme Kuralları</value>
+  </data>
+  <data name="cloaking_rules_sub_header" xml:space="preserve">
+    <value>(aktif gizleme kuralları)</value>
+  </data>
+  <data name="button_cloaking_add" xml:space="preserve">
+    <value>Yeni bir gizleme kuralı ekleyin</value>
+  </data>
+  <data name="button_cloaking_remove" xml:space="preserve">
+    <value>Seçili gizleme kuralını kaldır</value>
+  </data>
+  <data name="button_cloaking_import" xml:space="preserve">
+    <value>Mevcut gizleme kurallarını içe aktar</value>
+  </data>
+  <data name="button_cloaking_export" xml:space="preserve">
+    <value>Gizleme kurallarını dışa aktar</value>
+  </data>
+  <data name="rule_window_cloaking_header" xml:space="preserve">
+    <value>Yeni gizleme kuralı ekle</value>
+  </data>
+  <data name="rule_window_cloaking_key_text" xml:space="preserve">
+    <value>Kural kaynağı (örneğin: www.google. *)</value>
+  </data>
+  <data name="rule_window_cloaking_value_text" xml:space="preserve">
+    <value>Kural hedefi (örneğin: forcesafesearch.google.com)</value>
+  </data>
+  <data name="forwarding" xml:space="preserve">
+    <value>Yönlendirme</value>
+  </data>
+  <data name="forwarding_path" xml:space="preserve">
+    <value>Yönlendirme Kuralları:</value>
+  </data>
+  <data name="forwarding_rules_header" xml:space="preserve">
+    <value>Yönlendirme Kuralları</value>
+  </data>
+  <data name="forwarding_rules_sub_header" xml:space="preserve">
+    <value>(aktif yönlendirme kuralları)</value>
+  </data>
+  <data name="button_forwarding_add" xml:space="preserve">
+    <value>Yeni bir yönlendirme kuralı ekle</value>
+  </data>
+  <data name="button_forwarding_remove" xml:space="preserve">
+    <value>Seçilen yönlendirme kuralını kaldır</value>
+  </data>
+  <data name="button_forwarding_import" xml:space="preserve">
+    <value>Mevcut yönlendirme kurallarını içe aktar</value>
+  </data>
+  <data name="button_forwarding_export" xml:space="preserve">
+    <value>Yönlendirme kurallarını dışa aktar</value>
+  </data>
+  <data name="rule_window_forwarding_header" xml:space="preserve">
+    <value>Yeni yönlendirme kuralı ekle</value>
+  </data>
+  <data name="rule_window_forwarding_key_text" xml:space="preserve">
+    <value>Kural kaynağı (örneğin: example.com)</value>
+  </data>
+  <data name="rule_window_forwarding_value_text" xml:space="preserve">
+    <value>Kural hedefi (örneğin: 9.9.9.9,8.8.8.8)</value>
+  </data>
+  <data name="rule_window_add" xml:space="preserve">
+    <value>Ekle</value>
+  </data>
+  <data name="rule_window_abort" xml:space="preserve">
+    <value>İptal et</value>
+  </data>
+  <data name="settings_cloak_and_forward" xml:space="preserve">
+    <value>&quot;Gizle ve Yönlendir&quot; Sekmesini Göster</value>
   </data>
 </root>

@@ -12,7 +12,7 @@ namespace SimpleDnsCrypt.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -193,6 +193,30 @@ namespace SimpleDnsCrypt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoUpdateSilent {
+            get {
+                return ((bool)(this["AutoUpdateSilent"]));
+            }
+            set {
+                this["AutoUpdateSilent"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StartInTray {
+            get {
+                return ((bool)(this["StartInTray"]));
+            }
+            set {
+                this["StartInTray"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool TrayMode {
             get {
@@ -205,13 +229,61 @@ namespace SimpleDnsCrypt.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AutoUpdateSilent {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool InstallRedistributablePackage {
             get {
-                return ((bool)(this["AutoUpdateSilent"]));
+                return ((bool)(this["InstallRedistributablePackage"]));
             }
             set {
-                this["AutoUpdateSilent"] = value;
+                this["InstallRedistributablePackage"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool BackupAndRestoreConfigOnUpdate {
+            get {
+                return ((bool)(this["BackupAndRestoreConfigOnUpdate"]));
+            }
+            set {
+                this["BackupAndRestoreConfigOnUpdate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CloakingRulesFile {
+            get {
+                return ((string)(this["CloakingRulesFile"]));
+            }
+            set {
+                this["CloakingRulesFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsCloakAndForwardTabVisible {
+            get {
+                return ((bool)(this["IsCloakAndForwardTabVisible"]));
+            }
+            set {
+                this["IsCloakAndForwardTabVisible"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ForwardingRulesFile {
+            get {
+                return ((string)(this["ForwardingRulesFile"]));
+            }
+            set {
+                this["ForwardingRulesFile"] = value;
             }
         }
     }
